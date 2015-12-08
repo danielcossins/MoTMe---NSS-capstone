@@ -5,7 +5,7 @@ using MoTMe.Models;
 namespace MoTMe.Tests.Models
 {
     [TestClass]
-    public class UnitTest1
+    public class MessageTests
     {
         [TestMethod]
         public void MessageTextAllComponents()
