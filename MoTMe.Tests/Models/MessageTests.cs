@@ -8,7 +8,7 @@ namespace MoTMe.Tests.Models
     public class MessageTests
     {
         [TestMethod]
-        public void MessageTextAllComponents()
+        public void MessageTestAllComponents()
         {
             Message message = new Message();
             message.Id = 1;
