@@ -131,22 +131,27 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(Id, actual_user.Id);
         }
 
-        //[TestMethod]
-        //public void MoTMeRepositoryEnsureICanGetMessagesByUserId()
-        //{
-        //    // Arrange
-        //    var expected = new List<User>
-        //    {
-        //        new User { Id = 1 }
-        //    };
-        //    mock_set.Object.AddRange(expected);
+        [TestMethod]
+        public void MoTMeRepositoryEnsureICanGetMessagesByUserId()
+        {
+            // Arrange
+            var expected = new List<Message>
+            {
+                new Message { AuthorId = 1, Body = "made by 1" },
+                new Message { AuthorId = 2, Body = "not made by 1" },
+                new Message { AuthorId = 3, Body = "Not made by 1" },
+                new Message { AuthorId = 1, Body = "made by 1" }
+            };
+            mock_message_set.Object.AddRange(expected);
 
-        //    ConnectMocksToDataStore(expected);
-        //    // Act
-        //    int Id = 1;
-        //    List<Message> actual_user = repository.GetMessagesByUserId(Id);
-        //    // Assert
-        //    Assert.AreEqual();
-        //}
+            ConnectMocksToDataStore(expected);
+
+            List<Message> expectedMessages = new List<Message> { new Message() { AuthorId = 1, Body = "made by 1"}, new Message() { AuthorId = 1, Body = "made by 1"} };
+            // Act
+            int Id = 1;
+            List<Message> messages = repository.GetMessagesByUserId(Id);
+            // Assert
+            CollectionAssert.AreEqual(expectedMessages, messages);
+        }
     }
 }
