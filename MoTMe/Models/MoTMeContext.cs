@@ -9,7 +9,7 @@ namespace MoTMe.Models
     public class MoTMeContext : ApplicationDbContext
     {
         // IDbSet, IQueryable
-        //public virtual DbSet<JitterUser> JitterUsers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
     }
 }

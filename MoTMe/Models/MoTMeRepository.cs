@@ -26,5 +26,11 @@ namespace MoTMe.Models
             var query = from messages in _context.Messages select messages;
             return query.ToList();
         }
+
+        public List<User> GetAllUsers()
+        {
+            var query = from users in _context.Users select users;
+            return query.ToList();
+        }
     }
 }
