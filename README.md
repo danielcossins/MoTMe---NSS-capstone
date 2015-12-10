@@ -12,3 +12,7 @@
 
 * (Extra) User can add multiple people to a chat session. User can use the text functionality to alert people of the meeting.
 ^^This step needs to be planned out.
+
+
+Moqup: 
+ERD: 
