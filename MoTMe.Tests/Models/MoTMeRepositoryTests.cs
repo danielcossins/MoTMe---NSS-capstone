@@ -70,7 +70,7 @@ namespace MoTMe.Tests.Models
         }
 
         [TestMethod]
-        public void JitterRepositoryEnsureICanGetAllMessages()
+        public void MoTMeRepositoryEnsureICanGetAllMessages()
         {
             // Arrange
             var expected = new List<Message>
@@ -91,7 +91,7 @@ namespace MoTMe.Tests.Models
         }
 
         [TestMethod]
-        public void JitterRepositoryEnsureICanGetAllUsers()
+        public void MoTMeRepositoryEnsureICanGetAllUsers()
         {
             // Arrange
             var expected = new List<User>
@@ -109,6 +109,32 @@ namespace MoTMe.Tests.Models
 
             Assert.AreEqual("Billy", actual.First().Name);
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MoTMeRepositoryEnsureICanGetUserById()
+        {
+            // Arrange
+            var expected = new List<User>
+            {
+                new User { Id = 1 },
+                new User { Id = 2},
+                new User { Id = 3 }
+            };
+            mock_set.Object.AddRange(expected);
+
+            ConnectMocksToDataStore(expected);
+            // Act
+            int Id = 2;
+            User actual_user = repository.GetUserById(Id);
+            // Assert
+            Assert.AreEqual(Id, actual_user.Id);
+        }
+
+        [TestMethod]
+        public void MoTMeRepositoryEnsureICanGetMessagesByUserId()
+        {
+
         }
     }
 }

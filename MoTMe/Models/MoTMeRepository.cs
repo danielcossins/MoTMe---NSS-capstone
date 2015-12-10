@@ -32,5 +32,11 @@ namespace MoTMe.Models
             var query = from users in _context.Users select users;
             return query.ToList();
         }
+
+        public User GetUserById(int id)
+        {
+            var query = from u in _context.Users where u.Id == id select u;
+            return query.First<User>();
+        }
     }
 }
