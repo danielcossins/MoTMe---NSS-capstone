@@ -15,7 +15,7 @@
 
 
 ###Wireframe
-* Main Page: https://drive.google.com/file/d/0ByIpUhK8f5itbk95SjhpNEVSSkk/view?usp=sharing
+* Main Page: https://drive.google.com/open?id=0ByIpUhK8f5itbk95SjhpNEVSSkk
 * Search Users Page: https://drive.google.com/open?id=0ByIpUhK8f5itWS1DSTR4RmNGWW8
 * Group Session Page: https://drive.google.com/open?id=0ByIpUhK8f5itQ1pEQTVNR1ZUWW8
 
