@@ -16,7 +16,7 @@ namespace MoTMe.Models
         [Required]
         [MinLength(10)]
         [MaxLength(15)]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [MaxLength(300)]
         public string Description { get; set; }

@@ -12,8 +12,9 @@ namespace MoTMe.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Author = c.String(),
-                        Body = c.String(),
+                        AuthorId = c.Int(nullable: false),
+                        RecieverId = c.Int(nullable: false),
+                        Body = c.String(nullable: false),
                         Date = c.DateTime(nullable: false),
                         User_Id = c.Int(),
                     })
@@ -49,8 +50,11 @@ namespace MoTMe.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Phone = c.Int(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 20),
+                        Phone = c.String(nullable: false, maxLength: 15),
+                        Description = c.String(maxLength: 300),
+                        Photo = c.String(),
+                        Location = c.String(),
                         User_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

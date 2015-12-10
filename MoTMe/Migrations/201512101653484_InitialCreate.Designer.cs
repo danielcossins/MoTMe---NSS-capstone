@@ -13,7 +13,7 @@ namespace MoTMe.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201512092104398_InitialCreate"; }
+            get { return "201512101653484_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
