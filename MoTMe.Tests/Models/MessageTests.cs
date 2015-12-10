@@ -12,13 +12,15 @@ namespace MoTMe.Tests.Models
         {
             Message message = new Message();
             message.Id = 1;
-            message.Author = "Billy";
+            message.AuthorId = 1;
+            message.RecieverId = 2;
             message.Body = "Hi";
             var now = DateTime.Now;
             message.Date = now;
 
             Assert.AreEqual(1, message.Id);
-            Assert.AreEqual("Billy", message.Author);
+            Assert.AreEqual(1, message.AuthorId);
+            Assert.AreEqual(2, message.RecieverId);
             Assert.AreEqual("Hi", message.Body);
             Assert.AreEqual(now, message.Date);
         }
