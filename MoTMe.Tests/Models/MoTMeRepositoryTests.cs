@@ -112,7 +112,7 @@ namespace MoTMe.Tests.Models
         }
 
         [TestMethod]
-        public void MoTMeRepositoryEnsureICanGetUserById()
+        public void MoTMeRepositoryTestGetUserById()
         {
             // Arrange
             var expected = new List<User>
@@ -131,10 +131,22 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(Id, actual_user.Id);
         }
 
-        [TestMethod]
-        public void MoTMeRepositoryEnsureICanGetMessagesByUserId()
-        {
+        //[TestMethod]
+        //public void MoTMeRepositoryEnsureICanGetMessagesByUserId()
+        //{
+        //    // Arrange
+        //    var expected = new List<User>
+        //    {
+        //        new User { Id = 1 }
+        //    };
+        //    mock_set.Object.AddRange(expected);
 
-        }
+        //    ConnectMocksToDataStore(expected);
+        //    // Act
+        //    int Id = 1;
+        //    List<Message> actual_user = repository.GetMessagesByUserId(Id);
+        //    // Assert
+        //    Assert.AreEqual();
+        //}
     }
 }
