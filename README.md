@@ -7,7 +7,7 @@
 * User gets taken to the main page
 * The left side shows all of the contacts the user has
 * User can search for users in a search field and add them to his contacts
-* User can click on a contact. He is given to options: Send Message, or Send Text Message.
+* User can click on a contact. He is given to options: Send Message, or Send Text Message
 * Text field appears. User types in and sends message.
 
 * (Extra) User can add multiple people to a chat session. User can use the text functionality to alert people of the meeting.
