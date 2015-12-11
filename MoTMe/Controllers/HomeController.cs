@@ -21,7 +21,7 @@ namespace MoTMe.Controllers
             ViewBag.Message = "Your application description page.";
             ViewBag.List = new string[] { "1", "2", "3" };
 
-            ViewBag.Thing = repo.GetMessageById(1).Body;
+            ViewBag.Thing = repo.GetMessageById(1);
 
             return View();
         }
