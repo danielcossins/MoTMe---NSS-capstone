@@ -28,5 +28,8 @@ namespace MoTMe.Models
 
         public List<Message> Messages { get; set; }
         public List<User> Contacts { get; set; }
+
+        [Required]
+        public string UserIdLink { get; set; }
     }
 }
