@@ -3,6 +3,7 @@ namespace MoTMe.Migrations
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using MoTMe.Models;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MoTMe.Models.MoTMeContext>
@@ -26,6 +27,10 @@ namespace MoTMe.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            Message firstMessage = new Message { Id = 1, AuthorId = 1, RecieverId = 2, Body = "This is the first message in the database", Date = DateTime.Now };
+            context.Messages.Add(firstMessage);
+            context.SaveChanges();
+            //context.Users.Add();
         }
     }
 }
