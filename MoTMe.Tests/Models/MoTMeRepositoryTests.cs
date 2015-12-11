@@ -132,26 +132,52 @@ namespace MoTMe.Tests.Models
         }
 
         [TestMethod]
-        public void MoTMeRepositoryEnsureICanGetMessagesByUserId()
+        public void MoTMeRepositoryTestGetMessagesByUserId()
         {
             // Arrange
-            var expected = new List<Message>
+            var list = new List<Message>
             {
                 new Message { AuthorId = 1, Body = "made by 1" },
                 new Message { AuthorId = 2, Body = "not made by 1" },
                 new Message { AuthorId = 3, Body = "Not made by 1" },
                 new Message { AuthorId = 1, Body = "made by 1" }
             };
-            mock_message_set.Object.AddRange(expected);
+            mock_message_set.Object.AddRange(list);
 
-            ConnectMocksToDataStore(expected);
+            ConnectMocksToDataStore(list);
 
             List<Message> expectedMessages = new List<Message> { new Message() { AuthorId = 1, Body = "made by 1"}, new Message() { AuthorId = 1, Body = "made by 1"} };
             // Act
             int Id = 1;
             List<Message> messages = repository.GetMessagesByUserId(Id);
             // Assert
-            CollectionAssert.AreEqual(expectedMessages, messages);
+            //CollectionAssert.AreEqual(expectedMessages, messages);
+            Assert.AreEqual(expectedMessages[0].Body, messages[0].Body);
+            Assert.AreEqual(expectedMessages[1].Body, messages[0].Body);
+        }
+
+        [TestMethod]
+        public void MoTMeRepositoryTestGetMessageById()
+        {
+            var list = new List<Message>
+            {
+                new Message { Id = 1, Body = "this is id 1" },
+                new Message { Id = 2, Body = "this is id 2" },
+                new Message { Id = 3, Body = "this is id 3" },
+            };
+
+            mock_message_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            var expected = new Message { Id = 2, Body = "this is id 2" };
+
+            List<Message> expectedMessages = new List<Message> { new Message() { AuthorId = 1, Body = "made by 1" }, new Message() { AuthorId = 1, Body = "made by 1" } };
+            // Act
+            int Id = 2;
+            Message message = repository.GetMessageById(Id);
+            // Assert
+            Assert.AreEqual(expected.Body, message.Body);
         }
     }
 }

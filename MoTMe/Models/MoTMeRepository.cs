@@ -41,8 +41,14 @@ namespace MoTMe.Models
 
         public List<Message> GetMessagesByUserId(int userId)
         {
-            var query = from m in _context.Messages where m.Id == userId select m;
+            var query = from m in _context.Messages where m.AuthorId == userId select m;
             return query.ToList<Message>();
+        }
+
+        public Message GetMessageById(int id)
+        {
+            var query = from m in _context.Messages where m.Id == id select m;
+            return query.Single<Message>();
         }
     }
 }
