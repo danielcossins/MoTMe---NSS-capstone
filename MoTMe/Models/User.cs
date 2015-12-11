@@ -6,6 +6,8 @@ using System.Web;
 
 namespace MoTMe.Models
 {
+    //daniel.cossins@yahoo.com | 1234asdfG$
+    //123@gmail.com | asdfG1234%
     public class User
     {
         [Key]
