@@ -5,13 +5,24 @@ app.controller('Controller', ["$scope", "$http", function ($scope, $http) {
     console.log($scope.test);
 
     
-    $http({
-        url: "/MoTMeRepository/GetMessageById",
-        method: "GET",
-        params: { id: 1 }
-    }).success(function (data) {
-        console.log(data);
-    }).error(function (error) {
-        console.log(error);
-    });
+    //$http.get({
+    //    url: "/api/Ajax",
+    //    //method: "GET",
+    //    //dataType: 'json',
+    //    //params: { id: 1 }
+    //}).success(function (data) {
+    //    console.log(data);
+    //}).error(function (error) {
+    //    console.log(error);
+    //});
+
+    $scope.hello = function () {
+        $scope.test = "Hello World";
+
+        $http.get("/Home/Get")
+            .success(function (data) {
+                $scope.test = data;
+            })
+            .error(function (error) { alert(error.error) });
+    }
 }]);

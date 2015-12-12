@@ -26,6 +26,16 @@ namespace MoTMe.Controllers
             return View();
         }
 
+        public string Get()
+        {
+            return "this is a string";
+        }
+
+        public Message GetMessageById(int id)
+        {
+            return repo.GetMessageById(id);
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
