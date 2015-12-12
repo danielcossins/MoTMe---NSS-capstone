@@ -157,13 +157,16 @@ namespace MoTMe.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    //Adding data to my own User table
+//------------------Adding data to my own User table
+                    //executes if user is successfully registered
                     MoTMeContext context = new MoTMeContext();
                     User newUser = new User();
                     newUser.UserIdLink = user.Id;
                     newUser.Name = model.Username;
                     newUser.Phone = model.PhoneNumber;
                     context.Users.Add(newUser);
+                    context.SaveChanges();
+//------------------Daniel's Code ^^
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

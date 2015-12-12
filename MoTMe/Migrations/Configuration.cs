@@ -27,10 +27,12 @@ namespace MoTMe.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            Message firstMessage = new Message { Id = 1, AuthorId = 1, RecieverId = 2, Body = "This is the first message in the database", Date = DateTime.Now };
-            context.Messages.Add(firstMessage);
+            //Message firstMessage = new Message { Id = 1, AuthorId = 1, RecieverId = 2, Body = "This is the first message in the database", Date = DateTime.Now };
+            //context.Messages.Add(firstMessage);
+            //context.SaveChanges();
+            User user = new User { Name = "coolman10", Phone = "1234567890", UserIdLink = "63211bb5-e247-4980-80bb-2a1cc9f15208" };
+            context.Users.Add(user);
             context.SaveChanges();
-            //context.Users.Add();
         }
     }
 }
