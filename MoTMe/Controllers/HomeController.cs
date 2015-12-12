@@ -28,7 +28,8 @@ namespace MoTMe.Controllers
 
         public string Get()
         {
-            return "this is a string";
+            UserController uc = new UserController();
+            return uc.GetUserId();
         }
 
         public Message GetMessageById(int id)
