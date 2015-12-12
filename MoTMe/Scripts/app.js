@@ -24,5 +24,11 @@ app.controller('Controller', ["$scope", "$http", function ($scope, $http) {
                 $scope.test = data;
             })
             .error(function (error) { alert(error.error) });
+
+        $http.get("/Manage/GetUserId")
+            .success(function (data) {
+                $scope.test = data;
+            })
+            .error(function (error) { alert(error.error) });
     }
 }]);

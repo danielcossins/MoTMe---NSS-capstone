@@ -75,6 +75,11 @@ namespace MoTMe.Controllers
             return View(model);
         }
 
+        public string GetUserId()
+        {
+            return User.Identity.GetUserId();
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
