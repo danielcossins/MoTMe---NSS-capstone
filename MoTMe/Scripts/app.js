@@ -1,13 +1,23 @@
-﻿var app = angular.module('MoTMe', []);
-
-app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    console.log($rootScope);
-    $http.get("/Manage/GetUserObjectJSON")
+﻿var app = angular.module('MoTMe', []).run([
+   "$rootScope", "$http",
+  function ($rootScope, $http) {
+      $http.get("/Manage/GetUserObjectJSON")
             .success(function (data) {
                 $rootScope.User = data;
                 console.log($rootScope);
             })
             .error(function (error) { alert(error.error) });
+  }
+]);
+
+app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    console.log($rootScope);
+    //$http.get("/Manage/GetUserObjectJSON")
+    //        .success(function (data) {
+    //            $rootScope.User = data;
+    //            console.log($rootScope);
+    //        })
+    //        .error(function (error) { alert(error.error) });
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
