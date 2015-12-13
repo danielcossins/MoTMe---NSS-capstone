@@ -20,10 +20,16 @@ app.controller('Controller', ["$scope", "$http", function ($scope, $http) {
             })
             .error(function (error) { alert(error.error) });
 
-        $http.get("/User/GetUserId_Int")
+        $http.get("/Manage/GetUserId")
             .success(function (data) {
                 $scope.UserId = data;
             })
             .error(function (error) { alert(error.error) });
+
+        //$http.get("/User/GetUserId_Int")
+        //    .success(function (data) {
+        //        $scope.UserId = data;
+        //    })
+        //    .error(function (error) { alert(error.error) });
     }
 }]);

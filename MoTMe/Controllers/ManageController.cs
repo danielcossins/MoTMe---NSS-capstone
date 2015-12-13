@@ -80,6 +80,12 @@ namespace MoTMe.Controllers
             return User.Identity.GetUserId();
         }
 
+        public int GetUserId()
+        {
+            MoTMeRepository repo = new MoTMeRepository();
+            return repo.GetUserByUserIdLink(GetUserIdLink()).Id;
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

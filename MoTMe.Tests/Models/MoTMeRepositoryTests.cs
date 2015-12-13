@@ -204,25 +204,25 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(Id, actual_user.UserIdLink);
         }
 
-        [TestMethod]
-        public void UserControllerTestBothGetUserIdMethods()
-        {
-            // Arrange
-            var list = new List<User>
-            {
-                new User { Id = 1, UserIdLink = "22c54162-9255-49d4-a58f-625a2c9cfb9b" },
-                new User { Id = 2, UserIdLink = "63211bb5-e247-4980-80bb-2a1cc9f15208" },
-                new User { Id = 3, UserIdLink = "6668a856-71ca-456e-9c29-ca033c44d2f4" }
-            };
-            mock_set.Object.AddRange(list);
+        //[TestMethod]
+        //public void UserControllerTestBothGetUserIdMethods()
+        //{
+        //    // Arrange
+        //    var list = new List<User>
+        //    {
+        //        new User { Id = 1, UserIdLink = "22c54162-9255-49d4-a58f-625a2c9cfb9b" },
+        //        new User { Id = 2, UserIdLink = "63211bb5-e247-4980-80bb-2a1cc9f15208" },
+        //        new User { Id = 3, UserIdLink = "6668a856-71ca-456e-9c29-ca033c44d2f4" }
+        //    };
+        //    mock_set.Object.AddRange(list);
 
-            ConnectMocksToDataStore(list);
+        //    ConnectMocksToDataStore(list);
 
-            UserController uc = new UserController();
-            MoTMeRepository repo = new MoTMeRepository();
-            var test = repo.GetAllUsers();
+        //    UserController uc = new UserController();
+        //    MoTMeRepository repo = new MoTMeRepository();
+        //    var test = repo.GetAllUsers();
 
-            Assert.AreEqual(2, uc.GetUserId_Int("63211bb5-e247-4980-80bb-2a1cc9f15208"));
-        }
+        //    Assert.AreEqual(2, uc.GetUserId_Int("63211bb5-e247-4980-80bb-2a1cc9f15208"));
+        //}
     }
 }
