@@ -14,9 +14,16 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     console.log("Index reached");
 
     $scope.AddMessage = function (message) {
-        var User = {
-            
-        };
+        console.log(message);
+        $http({
+            url: "/Manage/AddMessage",
+            method: "POST",
+            data: {
+                body: message,
+                authorId: $rootScope.User.Id,
+                recieverId: 1
+            }
+        })
     };
 }])
 

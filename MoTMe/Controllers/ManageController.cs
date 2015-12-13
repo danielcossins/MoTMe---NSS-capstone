@@ -44,6 +44,12 @@ namespace MoTMe.Controllers
         {
             return GetUserObject().Id;
         }
+
+        public void AddMessage(string body, int authorId, int recieverId)
+        {
+            MoTMeRepository repo = new MoTMeRepository();
+            repo.AddMessage(body, authorId, recieverId);
+        }
 /////////////////////////////
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
