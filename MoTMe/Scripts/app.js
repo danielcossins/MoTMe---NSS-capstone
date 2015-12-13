@@ -1,7 +1,7 @@
 ﻿var app = angular.module('MoTMe', []);
 
 app.controller('Controller', ["$scope", "$http", function ($scope, $http) {
-    $scope.test = "test variable";
+    $scope.test = "click me";
     console.log($scope.test);
 
 
@@ -16,7 +16,13 @@ app.controller('Controller', ["$scope", "$http", function ($scope, $http) {
 
         $http.get("/Manage/GetUserIdLink")
             .success(function (data) {
-                $scope.test = data;
+                $scope.UserIdLink = data;
+            })
+            .error(function (error) { alert(error.error) });
+
+        $http.get("/User/GetUserId_Int")
+            .success(function (data) {
+                $scope.UserId = data;
             })
             .error(function (error) { alert(error.error) });
     }

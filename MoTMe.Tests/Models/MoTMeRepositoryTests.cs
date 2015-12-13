@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Moq;
 using System.Data.Entity;
 using System.Linq;
+using MoTMe.Controllers;
 
 namespace MoTMe.Tests.Models
 {
@@ -195,8 +196,33 @@ namespace MoTMe.Tests.Models
             // Act
             string Id = "63211bb5-e247-4980-80bb-2a1cc9f15208";
             User actual_user = repository.GetUserByUserIdLink(Id);
+
+            MoTMeRepository repo = new MoTMeRepository();
+            var test = repo.GetAllUsers();
             // Assert
             Assert.AreEqual(2, actual_user.Id);
+            Assert.AreEqual(Id, actual_user.UserIdLink);
+        }
+
+        [TestMethod]
+        public void UserControllerTestBothGetUserIdMethods()
+        {
+            // Arrange
+            var list = new List<User>
+            {
+                new User { Id = 1, UserIdLink = "22c54162-9255-49d4-a58f-625a2c9cfb9b" },
+                new User { Id = 2, UserIdLink = "63211bb5-e247-4980-80bb-2a1cc9f15208" },
+                new User { Id = 3, UserIdLink = "6668a856-71ca-456e-9c29-ca033c44d2f4" }
+            };
+            mock_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            UserController uc = new UserController();
+            MoTMeRepository repo = new MoTMeRepository();
+            var test = repo.GetAllUsers();
+
+            Assert.AreEqual(2, uc.GetUserId_Int("63211bb5-e247-4980-80bb-2a1cc9f15208"));
         }
     }
 }

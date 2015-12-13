@@ -9,10 +9,10 @@ namespace MoTMe.Controllers
     public class UserController
     {
         MoTMeRepository repo = new MoTMeRepository();
+        ManageController mc = new ManageController();
 
         public User GetUserId_UserObject()
         {
-            ManageController mc = new ManageController();
             string idlink = mc.GetUserIdLink();
             return repo.GetUserByUserIdLink(idlink);
         }
@@ -21,5 +21,18 @@ namespace MoTMe.Controllers
         {
             return GetUserId_UserObject().Id;
         }
+
+        //public List<Message> GetAllUserMessages
+
+        //FOR TESTING
+        //public User GetUserId_UserObject(string idlink)
+        //{
+        //    return repo.GetUserByUserIdLink(idlink);
+        //}
+
+        //public int GetUserId_Int(string idlink)
+        //{
+        //    return GetUserId_UserObject(idlink).Id;
+        //}
     }
 }
