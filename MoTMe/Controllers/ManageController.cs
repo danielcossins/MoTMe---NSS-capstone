@@ -75,7 +75,7 @@ namespace MoTMe.Controllers
             return View(model);
         }
 
-        public string GetUserId()
+        public string GetUserIdLink()
         {
             return User.Identity.GetUserId();
         }

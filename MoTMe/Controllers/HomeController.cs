@@ -21,15 +21,15 @@ namespace MoTMe.Controllers
             ViewBag.Message = "Your application description page.";
             ViewBag.List = new string[] { "1", "2", "3" };
 
-            ViewBag.Thing = repo.GetMessageById(1);
+            //ViewBag.Thing = repo.GetMessageById(1);
 
             return View();
         }
 
         public string Get()
         {
-            UserController uc = new UserController();
-            return uc.GetUserId();
+            //UserController uc = new UserController();
+            return "this is a string returned from the back-end";
         }
 
         public Message GetMessageById(int id)

@@ -39,6 +39,12 @@ namespace MoTMe.Models
             return query.First<User>();
         }
 
+        public User GetUserByUserIdLink(string idlink)
+        {
+            var query = from u in _context.Users where u.UserIdLink == idlink select u;
+            return query.Single<User>();
+        }
+
         public List<Message> GetMessagesByUserId(int userId)
         {
             var query = from m in _context.Messages where m.AuthorId == userId select m;
