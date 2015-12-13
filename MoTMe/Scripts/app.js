@@ -12,6 +12,12 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     console.log("Index reached");
+
+    $scope.AddMessage = function (message) {
+        var User = {
+            
+        };
+    };
 }])
 
 app.controller('AboutCtrl', ["$scope", "$http", function ($scope, $http) {

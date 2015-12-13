@@ -62,5 +62,15 @@ namespace MoTMe.Models
             _context.Messages.Add(message);
             _context.SaveChanges();
         }
+
+        public void AddMessage(string body, int authorId, int recieverId)
+        {
+            Message message = new Message();
+            message.Body = body;
+            message.AuthorId = authorId;
+            message.RecieverId = recieverId;
+            message.Date = DateTime.Now;
+            AddMessage(message);
+        }
     }
 }

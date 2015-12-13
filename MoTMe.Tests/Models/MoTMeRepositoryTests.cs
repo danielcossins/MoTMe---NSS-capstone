@@ -245,5 +245,25 @@ namespace MoTMe.Tests.Models
 
             Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
         }
+
+        [TestMethod]
+        public void MoTMeRepositoryTestAddMessageWithParams()
+        {
+            var list = new List<Message>
+            {
+                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+            };
+
+            mock_message_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            MoTMeRepository repo = new MoTMeRepository();
+            repo.AddMessage("new message", 1, 2);
+
+            Assert.AreEqual("new message", repo.GetMessageById(4).Body);
+        }
     }
 }

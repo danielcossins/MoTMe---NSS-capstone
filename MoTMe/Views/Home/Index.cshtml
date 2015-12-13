@@ -10,6 +10,11 @@
     <div class="col-sm-6">
         <h1>messages</h1>
         <h3 ng-repeat="message in messages">{{message.Body}}</h3>
+        <br />
+        <br />
+        <br />
+        <input type="text" class="form-control" ng-model="body" />
+        <button class="btn btn-default" ng-click="AddMessage(body)">Send</button>
     </div>
     <div class="col-sm-3">
         <h1>alerts</h1>
