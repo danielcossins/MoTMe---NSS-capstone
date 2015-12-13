@@ -10,9 +10,16 @@ namespace MoTMe.Controllers
     {
         MoTMeRepository repo = new MoTMeRepository();
 
-        //public string GetUserId()
-        //{
-        //    repo.Get
-        //}
+        public User GetUserId_UserObject()
+        {
+            ManageController mc = new ManageController();
+            string idlink = mc.GetUserIdLink();
+            return repo.GetUserByUserIdLink(idlink);
+        }
+
+        public int GetUserId_Int()
+        {
+            return GetUserId_UserObject().Id;
+        }
     }
 }
