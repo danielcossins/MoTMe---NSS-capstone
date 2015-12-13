@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MoTMe.Models;
+using System.Web.Script.Serialization;
 
 namespace MoTMe.Controllers
 {
@@ -19,6 +20,31 @@ namespace MoTMe.Controllers
         public ManageController()
         {
         }
+
+////////Added methods
+        public string GetUserIdLink()
+        {
+            return User.Identity.GetUserId();
+        }
+
+        public User GetUserObject()
+        {
+            MoTMeRepository repo = new MoTMeRepository();
+            return repo.GetUserByUserIdLink(GetUserIdLink());
+        }
+
+        public string GetUserObjectJSON()
+        {
+            var javaScriptSerializer = new JavaScriptSerializer();
+            string jsonString = javaScriptSerializer.Serialize(GetUserObject());
+            return jsonString;
+        }
+
+        public int GetUserId()
+        {
+            return GetUserObject().Id;
+        }
+/////////////////////////////
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -73,17 +99,6 @@ namespace MoTMe.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
-        }
-
-        public string GetUserIdLink()
-        {
-            return User.Identity.GetUserId();
-        }
-
-        public int GetUserId()
-        {
-            MoTMeRepository repo = new MoTMeRepository();
-            return repo.GetUserByUserIdLink(GetUserIdLink()).Id;
         }
 
         //

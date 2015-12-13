@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
 using MoTMe.Models;
+using System.Web.Mvc;
 
 namespace MoTMe.Controllers
 {
-    public class UserController
+    public class UserController : Controller
     {
         MoTMeRepository repo = new MoTMeRepository();
         ManageController mc = new ManageController();
