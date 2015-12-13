@@ -13,17 +13,41 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     console.log("Index reached");
 
-    $scope.AddMessage = function (message) {
-        console.log(message);
+
+    $scope.RefreshMessages = function () {
+        console.log($rootScope);
+        console.log($rootScope.User);
+        console.log($rootScope.User.Id);
         $http({
-            url: "/Manage/AddMessage",
-            method: "POST",
-            data: {
-                body: message,
-                authorId: $rootScope.User.Id,
-                recieverId: 1
+            url: "/Manage/GetMessagesByUserId/",
+            method: "GET",
+            params: {
+                uid: $rootScope.User.Id
             }
         })
+            .success(function (data) {
+                console.log(data);
+                $scope.Messages = data;
+            })
+            .error(function (error) { alert(error.error) });
+    };
+    //$scope.RefreshMessages();
+
+    $scope.AddMessage = function (message) {
+        console.log(message);
+        if (message != "" && message != null && message != undefined) {
+            $http({
+                url: "/Manage/AddMessage",
+                method: "POST",
+                data: {
+                    body: message,
+                    authorId: $rootScope.User.Id,
+                    recieverId: 1
+                }
+            }).success(function () {
+                $scope.RefreshMessages();
+            });
+        }
     };
 }])
 

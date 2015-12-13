@@ -50,6 +50,14 @@ namespace MoTMe.Controllers
             MoTMeRepository repo = new MoTMeRepository();
             repo.AddMessage(body, authorId, recieverId);
         }
+
+        public string GetMessagesByUserId(int uid)
+        {
+            MoTMeRepository repo = new MoTMeRepository();
+            var javaScriptSerializer = new JavaScriptSerializer();
+            string jsonString = javaScriptSerializer.Serialize(repo.GetMessagesByUserId(uid).ToArray());
+            return jsonString;
+        }
 /////////////////////////////
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
