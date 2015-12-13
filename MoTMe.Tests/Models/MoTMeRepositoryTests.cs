@@ -243,7 +243,7 @@ namespace MoTMe.Tests.Models
             MoTMeRepository repo = new MoTMeRepository();
             repo.AddMessage(newMessage);
 
-            //Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
+            Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
         }
     }
 }
