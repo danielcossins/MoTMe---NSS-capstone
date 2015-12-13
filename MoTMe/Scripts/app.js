@@ -10,7 +10,11 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
             .error(function (error) { alert(error.error) });
 }])
 
-app.controller('Controller', ["$scope", "$http", function ($scope, $http) {
+app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    console.log("Index reached");
+}])
+
+app.controller('AboutCtrl', ["$scope", "$http", function ($scope, $http) {
     $scope.test = "click me";
     console.log($scope.test);
 
