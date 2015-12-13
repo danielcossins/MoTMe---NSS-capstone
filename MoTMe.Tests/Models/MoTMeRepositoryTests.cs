@@ -224,5 +224,26 @@ namespace MoTMe.Tests.Models
 
         //    Assert.AreEqual(2, uc.GetUserId_Int("63211bb5-e247-4980-80bb-2a1cc9f15208"));
         //}
+
+        [TestMethod]
+        public void MoTMeRepositoryTestAddMessage()
+        {
+            var list = new List<Message>
+            {
+                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+            };
+
+            mock_message_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            Message newMessage = new Message() { Id = 4, Body = "new message", AuthorId = 1, RecieverId = 2, Date = DateTime.Now };
+            MoTMeRepository repo = new MoTMeRepository();
+            repo.AddMessage(newMessage);
+
+            //Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
+        }
     }
 }

@@ -56,5 +56,11 @@ namespace MoTMe.Models
             var query = from m in _context.Messages where m.Id == id select m;
             return query.Single<Message>();
         }
+
+        public void AddMessage(Message message)
+        {
+            _context.Messages.Add(message);
+            _context.SaveChanges();
+        }
     }
 }
