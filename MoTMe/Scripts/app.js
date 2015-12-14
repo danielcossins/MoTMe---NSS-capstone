@@ -39,6 +39,9 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             })
             .error(function (error) { alert(error.error) });
     };
+    $scope.$watch('user', function (oldValue, newValue) {
+        $scope.RefreshMessages();
+    });
     //$scope.RefreshMessages();
 
     $scope.AddMessage = function (message) {
