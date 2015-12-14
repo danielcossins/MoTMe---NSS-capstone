@@ -1,31 +1,27 @@
 ﻿var app = angular.module('MoTMe', []).run([
    "$rootScope", "$http",
   function ($rootScope, $http) {
-      //$http.get("/Manage/GetUserObjectJSON")
-      //      .success(function (data) {
-      //          console.log(data);
-      //          $rootScope.user = data;
-      //          console.log($rootScope);
-      //          console.log($rootScope.user);
-      //      })
-      //      .error(function (error) { alert(error.error) });
+      //nothing to run first yet
   }
 ]);
 
 app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $http.get("/Manage/GetUserObjectJSON")
-            .success(function (data) {
-                console.log(data);
-                $scope.user = data;
-                console.log($scope.user);
-            })
-            .error(function (error) { alert(error.error) });
+        .success(function (data) {
+            console.log(data);
+            $scope.user = data;
+            console.log($scope.user);
+        })
+        .error(function (error) { alert(error.error) });
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    console.log($scope.user);
+    $scope.$watch('user', function (oldValue, newValue) {
+        //run everything that requires user inside here
+        $scope.RefreshMessages();
+    });
+
     $scope.RefreshMessages = function () {
-        console.log($scope.user);
         $http({
             url: "/Manage/GetMessagesByUserId/",
             method: "GET",
@@ -33,16 +29,12 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                 uid: $scope.user.Id
             }
         })
-            .success(function (data) {
-                console.log(data);
-                $scope.messages = data;
-            })
-            .error(function (error) { alert(error.error) });
+        .success(function (data) {
+            console.log(data);
+            $scope.messages = data;
+        })
+        .error(function (error) { alert(error.error) });
     };
-    $scope.$watch('user', function (oldValue, newValue) {
-        $scope.RefreshMessages();
-    });
-    //$scope.RefreshMessages();
 
     $scope.AddMessage = function (message) {
         console.log($scope.user);
@@ -65,18 +57,12 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 }])
 
 app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    //THIS IS STILL A TESTING GROUND
     $scope.test = "click me";
     console.log($scope.test);
 
-
     $scope.hello = function () {
         console.log($scope.user);
-
-        //$http.get("/Home/Get")
-        //    .success(function (data) {
-        //        $scope.test = data;
-        //    })
-        //    .error(function (error) { alert(error.error) });
 
         $http.get("/Manage/GetUserIdLink")
             .success(function (data) {
@@ -89,11 +75,5 @@ app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                 $scope.UserId = data;
             })
             .error(function (error) { alert(error.error) });
-
-        //$http.get("/User/GetUserId_Int")
-        //    .success(function (data) {
-        //        $scope.UserId = data;
-        //    })
-        //    .error(function (error) { alert(error.error) });
     }
 }]);
