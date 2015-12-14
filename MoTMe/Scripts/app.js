@@ -75,6 +75,15 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         }
         $scope.RefreshMessages();
     };
+
+    $(function () {
+        setInterval(oneSecondFunction, 1000);
+    });
+
+    function oneSecondFunction() {
+        // stuff you want to do every second
+        $scope.RefreshMessages();
+    }
 }])
 
 app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
