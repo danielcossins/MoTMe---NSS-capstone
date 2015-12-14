@@ -16,10 +16,10 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    $scope.$watch('user', function (newValue, oldValue) {
-        //run everything that requires user inside here
-        $scope.RefreshMessages();
-    });
+    //$scope.$watch('user', function (newValue, oldValue) {
+    //    //run everything that requires user inside here
+    //    $scope.RefreshMessages();
+    //});
 
     $http.get("/Manage/GetAllUsersJSON")
         .success(function (data) {
@@ -29,29 +29,22 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         })
         .error(function (error) { alert(error.error) });
 
-    //$scope.RefreshMessages = function () {
-    //    $http({
-    //        url: "/Manage/GetMessagesByUserId/",
-    //        method: "GET",
-    //        params: {
-    //            uid: $scope.user.Id
-    //        }
-    //    })
-    //    .success(function (data) {
-    //        console.log(data);
-    //        $scope.messages = data;
-    //    })
-    //    .error(function (error) { alert(error.error) });
-    //};
+
+    $scope.setClickedContact = function (contact) {
+        $scope.clickedContact = contact;
+        console.log($scope.clickedContact);
+        $scope.RefreshMessages();
+    };
 
     $scope.RefreshMessages = function () {
         console.log($scope.user);
+        console.log($scope.clickedContact.Id);
         $http({
             url: "/Manage/GetMessagesForOneContact/",
             method: "GET",
             params: {
                 aid: $scope.user.Id,
-                rid: 1
+                rid: $scope.clickedContact.Id
             }
         })
         .success(function (data) {
@@ -63,6 +56,8 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 
     $scope.AddMessage = function (message) {
         console.log($scope.user);
+        console.log($scope.clickedContact);
+        console.log($scope.clickedContact.Id);
         console.log(message);
         if (message != "" && message != null && message != undefined) {
             $http({
@@ -71,7 +66,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                 data: {
                     body: message,
                     authorId: $scope.user.Id,
-                    recieverId: 1
+                    recieverId: $scope.clickedContact.Id
                 }
             }).success(function () {
                 $scope.RefreshMessages();

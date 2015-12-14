@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-sm-3">
         <h1>contacts</h1>
-        <h3 ng-repeat="otherUser in users">{{otherUser.Name}}</h3>
+        <h3 ng-repeat="otherUser in users" ng-click="setClickedContact(otherUser)">{{otherUser.Name}}</h3>
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
     <div class="col-sm-6">
