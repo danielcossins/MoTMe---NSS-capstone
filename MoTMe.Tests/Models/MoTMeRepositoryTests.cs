@@ -248,6 +248,9 @@ namespace MoTMe.Tests.Models
 
             Assert.AreEqual(expected[0].Body, actual[0].Body);
             Assert.AreEqual(expected[1].Body, actual[1].Body);
+
+            //MoTMeRepository repo = new MoTMeRepository();
+            //var test = repo.GetAllMessages();
         }
 
 
@@ -272,13 +275,12 @@ namespace MoTMe.Tests.Models
         //    ConnectMocksToDataStore(list);
 
         //    Message newMessage = new Message() { Id = 4, Body = "new message", AuthorId = 1, RecieverId = 2, Date = DateTime.Now };
+        //    repository.AddMessage(newMessage);
         //    MoTMeRepository repo = new MoTMeRepository();
-        //    repo.AddMessage(newMessage);
+        //    var test = repo.GetAllMessages();
+        //    var test2 = repository.GetAllMessages();
 
-        //    Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
-        //    //mock_message_set.Object.Remove(newMessage);
-
-        //    //var test = repo.GetAllMessages();
+        //    Assert.AreEqual(newMessage.Body, repository.GetMessageById(4).Body);
         //}
 
         //[TestMethod]
@@ -295,12 +297,9 @@ namespace MoTMe.Tests.Models
 
         //    ConnectMocksToDataStore(list);
 
-        //    MoTMeRepository repo = new MoTMeRepository();
-        //    repo.AddMessage("new message", 1, 2);
+        //    repository.AddMessage("new message", 1, 2);
 
-        //    Assert.AreEqual("new message", repo.GetMessageById(4).Body);
-
-        //    //mock_message_set.Object.RemoveRange();
+        //    Assert.AreEqual("new message", repository.GetMessageById(4).Body);
         //}
     }
 }
