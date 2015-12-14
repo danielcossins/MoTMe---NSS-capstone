@@ -16,6 +16,8 @@ namespace MoTMe.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private MoTMeRepository repo = new MoTMeRepository();
+        private JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
 
         public ManageController()
         {
@@ -29,13 +31,11 @@ namespace MoTMe.Controllers
 
         public User GetUserObject()
         {
-            MoTMeRepository repo = new MoTMeRepository();
             return repo.GetUserByUserIdLink(GetUserIdLink());
         }
 
         public string GetUserObjectJSON()
         {
-            var javaScriptSerializer = new JavaScriptSerializer();
             string jsonString = javaScriptSerializer.Serialize(GetUserObject());
             return jsonString;
         }
@@ -47,15 +47,18 @@ namespace MoTMe.Controllers
 
         public void AddMessage(string body, int authorId, int recieverId)
         {
-            MoTMeRepository repo = new MoTMeRepository();
             repo.AddMessage(body, authorId, recieverId);
         }
 
         public string GetMessagesByUserId(int uid)
         {
-            MoTMeRepository repo = new MoTMeRepository();
-            var javaScriptSerializer = new JavaScriptSerializer();
             string jsonString = javaScriptSerializer.Serialize(repo.GetMessagesByUserId(uid).ToArray());
+            return jsonString;
+        }
+
+        public string GetMessagesForOneContact(int aid, int rid)
+        {
+            string jsonString = javaScriptSerializer.Serialize(repo.GetMessagesByAuthorId_and_ReciverId(aid, rid));
             return jsonString;
         }
 /////////////////////////////

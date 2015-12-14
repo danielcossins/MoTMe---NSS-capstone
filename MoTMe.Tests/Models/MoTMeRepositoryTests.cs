@@ -245,7 +245,6 @@ namespace MoTMe.Tests.Models
                 new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = time },
             };
             var actual = repository.GetMessagesByAuthorId_and_ReciverId(1, 2);
-            var test = repository.GetAllMessages();
 
             Assert.AreEqual(expected[0].Body, actual[0].Body);
             Assert.AreEqual(expected[1].Body, actual[1].Body);

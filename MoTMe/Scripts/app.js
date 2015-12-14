@@ -21,12 +21,28 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.RefreshMessages();
     });
 
+    //$scope.RefreshMessages = function () {
+    //    $http({
+    //        url: "/Manage/GetMessagesByUserId/",
+    //        method: "GET",
+    //        params: {
+    //            uid: $scope.user.Id
+    //        }
+    //    })
+    //    .success(function (data) {
+    //        console.log(data);
+    //        $scope.messages = data;
+    //    })
+    //    .error(function (error) { alert(error.error) });
+    //};
+
     $scope.RefreshMessages = function () {
         $http({
-            url: "/Manage/GetMessagesByUserId/",
+            url: "/Manage/GetMessagesForOneContact/",
             method: "GET",
             params: {
-                uid: $scope.user.Id
+                aid: $scope.user.Id,
+                rid: 1
             }
         })
         .success(function (data) {
