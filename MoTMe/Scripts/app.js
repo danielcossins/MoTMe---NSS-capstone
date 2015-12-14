@@ -35,7 +35,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         })
             .success(function (data) {
                 console.log(data);
-                $scope.Messages = data;
+                $scope.messages = data;
             })
             .error(function (error) { alert(error.error) });
     };
