@@ -6,10 +6,16 @@
 <div class="row">
     <div class="col-sm-3">
         <h1>contacts</h1>
+        <h3 ng-repeat="otherUser in users">{{otherUser.Name}}</h3>
+        @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
     <div class="col-sm-6">
         <h1>messages</h1>
-        <h3 ng-repeat="message in messages">{{message.Body}}</h3>
+        <div class="panel panel-body" ng-repeat="message in messages">
+            @*Name can be added in ManageController*@
+            <h6>{{Message.Date}}</h6>
+            <h4>{{message.Body}}</h4>
+        </div>
         <br />
         <br />
         <br />

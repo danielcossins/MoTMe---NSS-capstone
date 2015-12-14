@@ -40,6 +40,12 @@ namespace MoTMe.Controllers
             return jsonString;
         }
 
+        public string GetAllUsersJSON()
+        {
+            string jsonString = javaScriptSerializer.Serialize(repo.GetAllUsers());
+            return jsonString;
+        }
+
         public int GetUserId()
         {
             return GetUserObject().Id;

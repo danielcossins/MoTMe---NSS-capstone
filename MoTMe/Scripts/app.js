@@ -16,10 +16,18 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    $scope.$watch('user', function (oldValue, newValue) {
+    $scope.$watch('user', function (newValue, oldValue) {
         //run everything that requires user inside here
         $scope.RefreshMessages();
     });
+
+    $http.get("/Manage/GetAllUsersJSON")
+        .success(function (data) {
+            console.log(data);
+            $scope.users = data;
+            console.log($scope.users);
+        })
+        .error(function (error) { alert(error.error) });
 
     //$scope.RefreshMessages = function () {
     //    $http({
@@ -37,6 +45,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     //};
 
     $scope.RefreshMessages = function () {
+        console.log($scope.user);
         $http({
             url: "/Manage/GetMessagesForOneContact/",
             method: "GET",
