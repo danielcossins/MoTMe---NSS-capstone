@@ -1,38 +1,36 @@
 ﻿var app = angular.module('MoTMe', []).run([
    "$rootScope", "$http",
   function ($rootScope, $http) {
-      $http.get("/Manage/GetUserObjectJSON")
-            .success(function (data) {
-                $rootScope.User = data;
-                console.log($rootScope);
-            })
-            .error(function (error) { alert(error.error) });
+      //$http.get("/Manage/GetUserObjectJSON")
+      //      .success(function (data) {
+      //          console.log(data);
+      //          $rootScope.user = data;
+      //          console.log($rootScope);
+      //          console.log($rootScope.user);
+      //      })
+      //      .error(function (error) { alert(error.error) });
   }
 ]);
 
 app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    console.log($rootScope);
-    //$http.get("/Manage/GetUserObjectJSON")
-    //        .success(function (data) {
-    //            $rootScope.User = data;
-    //            console.log($rootScope);
-    //        })
-    //        .error(function (error) { alert(error.error) });
+    $http.get("/Manage/GetUserObjectJSON")
+            .success(function (data) {
+                console.log(data);
+                $scope.user = data;
+                console.log($scope.user);
+            })
+            .error(function (error) { alert(error.error) });
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    console.log("Index reached");
-
-
+    console.log($scope.user);
     $scope.RefreshMessages = function () {
-        console.log($rootScope);
-        console.log($rootScope.User);
-        console.log($rootScope.User.Id);
+        console.log($scope.user);
         $http({
             url: "/Manage/GetMessagesByUserId/",
             method: "GET",
             params: {
-                uid: $rootScope.User.Id
+                uid: $scope.user.Id
             }
         })
             .success(function (data) {
@@ -44,6 +42,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     //$scope.RefreshMessages();
 
     $scope.AddMessage = function (message) {
+        console.log($scope.user);
         console.log(message);
         if (message != "" && message != null && message != undefined) {
             $http({
@@ -51,23 +50,24 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                 method: "POST",
                 data: {
                     body: message,
-                    authorId: $rootScope.User.Id,
+                    authorId: $scope.user.Id,
                     recieverId: 1
                 }
             }).success(function () {
                 $scope.RefreshMessages();
             });
         }
+        $scope.RefreshMessages();
     };
 }])
 
-app.controller('AboutCtrl', ["$scope", "$http", function ($scope, $http) {
+app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.test = "click me";
     console.log($scope.test);
 
 
     $scope.hello = function () {
-        $scope.test = "Hello World";
+        console.log($scope.user);
 
         //$http.get("/Home/Get")
         //    .success(function (data) {
