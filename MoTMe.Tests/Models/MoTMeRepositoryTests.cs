@@ -176,6 +176,7 @@ namespace MoTMe.Tests.Models
             // Act
             int Id = 2;
             Message message = repository.GetMessageById(Id);
+            var stupid = repository.GetAllMessages();
             // Assert
             Assert.AreEqual(expected.Body, message.Body);
         }
@@ -197,8 +198,6 @@ namespace MoTMe.Tests.Models
             string Id = "63211bb5-e247-4980-80bb-2a1cc9f15208";
             User actual_user = repository.GetUserByUserIdLink(Id);
 
-            MoTMeRepository repo = new MoTMeRepository();
-            var test = repo.GetAllUsers();
             // Assert
             Assert.AreEqual(2, actual_user.Id);
             Assert.AreEqual(Id, actual_user.UserIdLink);
@@ -226,44 +225,83 @@ namespace MoTMe.Tests.Models
         //}
 
         [TestMethod]
-        public void MoTMeRepositoryTestAddMessage()
+        public void GetMessagesByAuthorId_and_ReciverId()
         {
+            var time = DateTime.Now;
             var list = new List<Message>
             {
-                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
-                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
-                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 3, Date = time },
+                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = time },
             };
 
             mock_message_set.Object.AddRange(list);
 
             ConnectMocksToDataStore(list);
 
-            Message newMessage = new Message() { Id = 4, Body = "new message", AuthorId = 1, RecieverId = 2, Date = DateTime.Now };
-            MoTMeRepository repo = new MoTMeRepository();
-            repo.AddMessage(newMessage);
-
-            Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
-        }
-
-        [TestMethod]
-        public void MoTMeRepositoryTestAddMessageWithParams()
-        {
-            var list = new List<Message>
+            var expected = new List<Message>()
             {
-                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
-                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
-                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = time },
             };
+            var actual = repository.GetMessagesByAuthorId_and_ReciverId(1, 2);
+            var test = repository.GetAllMessages();
 
-            mock_message_set.Object.AddRange(list);
-
-            ConnectMocksToDataStore(list);
-
-            MoTMeRepository repo = new MoTMeRepository();
-            repo.AddMessage("new message", 1, 2);
-
-            Assert.AreEqual("new message", repo.GetMessageById(4).Body);
+            Assert.AreEqual(expected[0].Body, actual[0].Body);
+            Assert.AreEqual(expected[1].Body, actual[1].Body);
         }
+
+
+
+
+        //////////////////THESE TESTS PASS, BUT THEY KEEP ADDING TO THE DATABASE VIA repo
+        /////////////////Find out how to remove from moq db
+        /////////////////
+        /////////////////
+        //[TestMethod]
+        //public void MoTMeRepositoryTestAddMessage()
+        //{
+        //    var list = new List<Message>
+        //    {
+        //        new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+        //        new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+        //        new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+        //    };
+
+        //    mock_message_set.Object.AddRange(list);
+
+        //    ConnectMocksToDataStore(list);
+
+        //    Message newMessage = new Message() { Id = 4, Body = "new message", AuthorId = 1, RecieverId = 2, Date = DateTime.Now };
+        //    MoTMeRepository repo = new MoTMeRepository();
+        //    repo.AddMessage(newMessage);
+
+        //    Assert.AreEqual(newMessage.Body, repo.GetMessageById(4).Body);
+        //    //mock_message_set.Object.Remove(newMessage);
+
+        //    //var test = repo.GetAllMessages();
+        //}
+
+        //[TestMethod]
+        //public void MoTMeRepositoryTestAddMessageWithParams()
+        //{
+        //    var list = new List<Message>
+        //    {
+        //        new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+        //        new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+        //        new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = DateTime.Now },
+        //    };
+
+        //    mock_message_set.Object.AddRange(list);
+
+        //    ConnectMocksToDataStore(list);
+
+        //    MoTMeRepository repo = new MoTMeRepository();
+        //    repo.AddMessage("new message", 1, 2);
+
+        //    Assert.AreEqual("new message", repo.GetMessageById(4).Body);
+
+        //    //mock_message_set.Object.RemoveRange();
+        //}
     }
 }

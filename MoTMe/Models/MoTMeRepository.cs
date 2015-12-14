@@ -72,5 +72,11 @@ namespace MoTMe.Models
             message.Date = DateTime.Now;
             AddMessage(message);
         }
+
+        public List<Message> GetMessagesByAuthorId_and_ReciverId(int ai, int ri)
+        {
+            var query = from m in _context.Messages where (m.AuthorId == ai || m.RecieverId == ai) && (m.AuthorId == ri || m.RecieverId == ri) select m;
+            return query.ToList<Message>();
+        }
     }
 }
