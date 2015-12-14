@@ -78,5 +78,12 @@ namespace MoTMe.Models
             var query = from m in _context.Messages where (m.AuthorId == ai || m.RecieverId == ai) && (m.AuthorId == ri || m.RecieverId == ri) select m;
             return query.ToList<Message>();
         }
+
+        public List<Message> GetMessagesByAuthorAndRecieverId_CertainNumber(int ai, int ri, int number)
+        {
+            var list = GetMessagesByAuthorId_and_ReciverId(ai, ri);
+            var count = list.Count;
+            return list.GetRange(count - number, number);
+        }
     }
 }
