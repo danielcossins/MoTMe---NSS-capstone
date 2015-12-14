@@ -16,10 +16,11 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    //$scope.$watch('user', function (newValue, oldValue) {
-    //    //run everything that requires user inside here
-    //    $scope.RefreshMessages();
-    //});
+    $("#text").keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#button").click();
+        }
+    });
 
     $http.get("/Manage/GetAllUsersJSON")
         .success(function (data) {
@@ -76,12 +77,13 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.RefreshMessages();
     };
 
+    //This code will run every second//
     $(function () {
         setInterval(oneSecondFunction, 1000);
     });
 
     function oneSecondFunction() {
-        // stuff you want to do every second
+        //things to do every second
         $scope.RefreshMessages();
     }
 }])
