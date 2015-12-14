@@ -6,15 +6,17 @@
 <div class="row">
     <div class="col-sm-3">
         <h1>contacts</h1>
-        <div ng-repeat="otherUser in users" ng-click="setClickedContact(otherUser)" ng-if="user.Id != otherUser.Id">
-            <h3>{{otherUser.Name}}</h3>
+        <div ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
+            <h3>{{contact.Name}}</h3>
         </div>
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
     <div class="col-sm-6">
         <h1>messages</h1>
+        <h2>{{clickedContact.Name}}</h2>
         <div class="panel panel-body" ng-repeat="message in messages">
-            @*Name can be added in ManageController*@
+            <h3 ng-if="message.AuthorId == user.Id">You</h3>
+            <h3 ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
             <h6>{{Message.Date}}</h6>
             <h4>{{message.Body}}</h4>
         </div>

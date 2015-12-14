@@ -24,7 +24,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     $http.get("/Manage/GetAllUsersJSON")
         .success(function (data) {
             console.log(data);
-            $scope.users = data;
+            $scope.contacts = data;
             console.log($scope.users);
         })
         .error(function (error) { alert(error.error) });
