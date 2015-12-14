@@ -83,7 +83,14 @@ namespace MoTMe.Models
         {
             var list = GetMessagesByAuthorId_and_ReciverId(ai, ri);
             var count = list.Count;
-            return list.GetRange(count - number, number);
+            if(count > number)
+            {
+                return list.GetRange(count - number, number);
+            }
+            else
+            {
+                return list;
+            }
         }
     }
 }

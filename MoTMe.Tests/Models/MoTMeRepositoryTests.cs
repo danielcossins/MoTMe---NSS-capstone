@@ -282,6 +282,41 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(expected[1].Id, actual[1].Id);
         }
 
+        [TestMethod]
+        public void TestGetMessagesByAuthorAndRecieverId_CertainNumberWithLessThanTheAmount()
+        {
+            var time = DateTime.Now;
+            var list = new List<Message>
+            {
+                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 4, Body = "this is id 4", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 5, Body = "this is id 5", AuthorId = 1, RecieverId = 2, Date = time },
+            };
+
+            mock_message_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            var expected = new List<Message>()
+            {
+                new Message { Id = 1, Body = "this is id 1", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 2, Body = "this is id 2", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 3, Body = "this is id 3", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 4, Body = "this is id 4", AuthorId = 1, RecieverId = 2, Date = time },
+                new Message { Id = 5, Body = "this is id 5", AuthorId = 1, RecieverId = 2, Date = time },
+            };
+            int numberToGet = 6;
+            var actual = repository.GetMessagesByAuthorAndRecieverId_CertainNumber(1, 2, numberToGet);
+
+            Assert.AreEqual(expected[0].Id, actual[0].Id);
+            Assert.AreEqual(expected[1].Id, actual[1].Id);
+            Assert.AreEqual(expected[2].Id, actual[2].Id);
+            Assert.AreEqual(expected[3].Id, actual[3].Id);
+            Assert.AreEqual(expected[4].Id, actual[4].Id);
+        }
+
 
 
 
