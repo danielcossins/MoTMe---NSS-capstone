@@ -67,7 +67,13 @@ namespace MoTMe.Controllers
             string jsonString = javaScriptSerializer.Serialize(repo.GetMessagesByAuthorId_and_ReciverId(aid, rid));
             return jsonString;
         }
-/////////////////////////////
+
+        public string GetMessagesForOneContact_CertainNumber(int aid, int rid, int number)
+        {
+            string jsonString = javaScriptSerializer.Serialize(repo.GetMessagesByAuthorAndRecieverId_CertainNumber(aid, rid, number));
+            return jsonString;
+        }
+        /////////////////////////////
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {

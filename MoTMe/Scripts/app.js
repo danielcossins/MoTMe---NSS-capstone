@@ -40,11 +40,12 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         console.log($scope.user);
         console.log($scope.clickedContact.Id);
         $http({
-            url: "/Manage/GetMessagesForOneContact/",
+            url: "/Manage/GetMessagesForOneContact_CertainNumber/",
             method: "GET",
             params: {
                 aid: $scope.user.Id,
-                rid: $scope.clickedContact.Id
+                rid: $scope.clickedContact.Id,
+                number: 10
             }
         })
         .success(function (data) {
