@@ -72,6 +72,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                 }
             }).success(function () {
                 $scope.RefreshMessages();
+                $scope.body = "";
             });
         }
         $scope.RefreshMessages();
