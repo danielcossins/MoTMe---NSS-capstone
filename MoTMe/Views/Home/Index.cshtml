@@ -24,8 +24,8 @@
         <br />
         <br />
         <div id="chat" ng-if="clickedContact != undefined">
-            <input type="text" class="" id="text" ng-model="body"/>
-            <button id="button" class="btn btn-default" ng-click="AddMessage(body)">Send</button>
+            <input type="text" class="" ng-model="$parent.body" my-enter="AddMessage(body)"/>
+            <button class="btn btn-default" ng-click="AddMessage(body)">Send</button>
         </div>
         <h3 ng-if="clickedContact == undefined">Click a user to message</h3>
     </div>

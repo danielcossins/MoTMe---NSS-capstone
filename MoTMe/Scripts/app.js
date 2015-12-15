@@ -16,13 +16,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    window.scrollTo(0, document.body.scrollHeight);
-    $("#text").keyup(function (event) {
-        if (event.keyCode == 13) {
-            $("#button").click();
-        }
-    });
-
+    $scope.body = "";
     $http.get("/Manage/GetAllUsersJSON")
         .success(function (data) {
             console.log(data);
@@ -120,3 +114,17 @@ app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             .error(function (error) { alert(error.error) });
     }
 }]);
+
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
