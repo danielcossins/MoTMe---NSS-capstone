@@ -3,15 +3,11 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+<div ng-controller="ContactCtrl">
+<input type="text" class="form-control">
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="panel panel-default" ng-repeat="user in users">
+    <h1>{{user.Name}}</h1>
+    <button type="button" ng-click="AddToContacts(user)">Add to Contacts</button>
+</div>
+</div>
