@@ -365,5 +365,28 @@ namespace MoTMe.Tests.Models
 
         //    Assert.AreEqual("new message", repository.GetMessageById(4).Body);
         //}
+
+        [TestMethod]
+        public void TestAddContactToUser()
+        {
+            var list = new List<User>
+            {
+                new User { Id = 1, Name = "username1" },
+                new User { Id = 2, Name = "username2" },
+                new User { Id = 3, Name = "username3" }
+            };
+            mock_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            var test = repository.GetAllUsers();
+
+            List<User> expected = new List<User> { new User { Id = 3 } };
+
+            repository.AddContactToUser(1, 3);
+            User user = repository.GetUserById(1);
+
+            Assert.AreEqual(expected[0].Id, user.Contacts[0].Id);
+        }
     }
 }

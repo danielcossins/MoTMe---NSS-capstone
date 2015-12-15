@@ -83,15 +83,24 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     }
 
     //This code will run every second//
-    //$(function () {
-    //    setInterval(oneSecondFunction, 1000);
-    //});
+    $(function () {
+        setInterval(oneSecondFunction, 1000);
+    });
 
-    //function oneSecondFunction() {
-    //    //things to do every second
-    //    $scope.RefreshMessages();
-    //}
-}])
+    function oneSecondFunction() {
+        //things to do every second
+        $scope.RefreshMessages();
+    }
+}]);
+
+app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    $http.get("/Manage/GetAllUsersJSON")
+        .success(function (data) {
+            console.log("users", data);
+            $scope.users = data;
+        })
+        .error(function (error) { alert(error.error) });
+}]);
 
 app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     //THIS IS STILL A TESTING GROUND

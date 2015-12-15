@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -91,6 +92,14 @@ namespace MoTMe.Models
             {
                 return list;
             }
+        }
+
+        public void AddContactToUser(int userId, int contactId)
+        {
+            var newContact = GetUserById(contactId);
+            var user = GetUserById(userId);
+            user.Contacts.Add(newContact);
+            _context.Users.AddOrUpdate(user);
         }
     }
 }
