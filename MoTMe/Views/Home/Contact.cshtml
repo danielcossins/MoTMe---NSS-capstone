@@ -6,8 +6,8 @@
 <div ng-controller="ContactCtrl">
 <input type="text" class="form-control">
 
-<div class="panel panel-default" ng-repeat="user in users">
-    <h1>{{user.Name}}</h1>
-    <button type="button" ng-click="AddToContacts(user)">Add to Contacts</button>
+<div class="panel panel-default" ng-repeat="otherUser in users">
+    <h1>{{otherUser.Name}}</h1>
+    <button type="button" ng-click="AddToContacts(user.Id, otherUser.Id)">Add to Contacts</button>
 </div>
 </div>

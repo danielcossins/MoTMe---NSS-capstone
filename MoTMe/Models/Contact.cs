@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MoTMe.Models
 {
-    public class Contacts
+    public class Contact
     {
         [Key]
         public int Id { get; set; }

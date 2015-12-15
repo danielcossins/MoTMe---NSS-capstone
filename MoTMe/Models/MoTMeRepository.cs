@@ -94,12 +94,19 @@ namespace MoTMe.Models
             }
         }
 
-        public void AddContactToUser(int userId, int contactId)
+        public void AddContact(int userId, int contactId)
         {
-            var newContact = GetUserById(contactId);
-            var user = GetUserById(userId);
-            user.Contacts.Add(newContact);
-            _context.Users.AddOrUpdate(user);
+            Contact contact = new Contact();
+            contact.Id = 1;
+            contact.UserId = userId;
+            contact.ContactId = contactId;
+            _context.Contacts.Add(contact);
+        }
+
+        public List<Contact> GetContactsByUserId(int userId)
+        {
+            var query = from c in _context.Contacts where c.UserId == userId select c;
+            return query.ToList<Contact>();
         }
     }
 }

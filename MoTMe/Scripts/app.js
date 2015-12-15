@@ -100,6 +100,25 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
             $scope.users = data;
         })
         .error(function (error) { alert(error.error) });
+
+    $scope.AddToContacts = function (userId, otherUserId) {
+        $http({
+            url: "/Manage/AddContact",
+            method: "POST",
+            data: {
+                userId: userId,
+                contactId: otherUserId
+            }
+        }).success(function () {
+            console.log("added to contacts");
+            $http.get("/Manage/GetContactsByUserId/" + $scope.user.Id)
+                .success(function (data) {
+                    $scope.contacts = data;
+                    console.log($scope.contacts);
+                })
+                .error(function (error) { alert(error.error) });
+        });
+    };
 }]);
 
 app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
