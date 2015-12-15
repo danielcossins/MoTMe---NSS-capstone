@@ -16,6 +16,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    window.scrollTo(0, document.body.scrollHeight);
     $("#text").keyup(function (event) {
         if (event.keyCode == 13) {
             $("#button").click();
@@ -35,6 +36,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.clickedContact = contact;
         console.log($scope.clickedContact);
         $scope.RefreshMessages();
+        //window.scrollTo(0, document.body.scrollHeight);
     };
 
     $scope.RefreshMessages = function () {
