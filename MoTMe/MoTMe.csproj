@@ -193,8 +193,17 @@
     <Compile Include="Migrations\201512111950092_NewUserId.Designer.cs">
       <DependentUpon>201512111950092_NewUserId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512151852559_ContactTableAdded.cs" />
+    <Compile Include="Migrations\201512151852559_ContactTableAdded.Designer.cs">
+      <DependentUpon>201512151852559_ContactTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512151909018_ContactsAddedToContext.cs" />
+    <Compile Include="Migrations\201512151909018_ContactsAddedToContext.Designer.cs">
+      <DependentUpon>201512151909018_ContactsAddedToContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
@@ -1061,6 +1070,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512111950092_NewUserId.resx">
       <DependentUpon>201512111950092_NewUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512151852559_ContactTableAdded.resx">
+      <DependentUpon>201512151852559_ContactTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512151909018_ContactsAddedToContext.resx">
+      <DependentUpon>201512151909018_ContactsAddedToContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

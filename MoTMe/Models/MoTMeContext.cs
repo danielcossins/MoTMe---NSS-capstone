@@ -11,5 +11,6 @@ namespace MoTMe.Models
         // IDbSet, IQueryable
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Contacts> Contacts { get; set; }
     }
 }
