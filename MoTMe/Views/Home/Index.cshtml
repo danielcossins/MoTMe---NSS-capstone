@@ -17,7 +17,7 @@
         <div class="panel panel-body" ng-repeat="message in messages">
             <h3 ng-if="message.AuthorId == user.Id">You</h3>
             <h3 ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
-            <h6>{{Message.Date}}</h6>
+            <h6>{{message.Date}}</h6>
             <h4>{{message.Body}}</h4>
         </div>
         <br />

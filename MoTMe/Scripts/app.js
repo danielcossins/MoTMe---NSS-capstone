@@ -51,7 +51,9 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         })
         .success(function (data) {
             console.log(data);
+            ChangeDate(data);
             $scope.messages = data;
+            console.log($scope.messages);
         })
         .error(function (error) { alert(error.error) });
     };
@@ -78,15 +80,21 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.RefreshMessages();
     };
 
-    //This code will run every second//
-    $(function () {
-        setInterval(oneSecondFunction, 1000);
-    });
-
-    function oneSecondFunction() {
-        //things to do every second
-        $scope.RefreshMessages();
+    function ChangeDate(messageArr) {
+        for (var i = 0; i < messageArr.length; i++) {
+            messageArr[i].Date = new Date(parseInt(messageArr[i].Date.replace('/Date(', ''))).toString();
+        }
     }
+
+    //This code will run every second//
+    //$(function () {
+    //    setInterval(oneSecondFunction, 1000);
+    //});
+
+    //function oneSecondFunction() {
+    //    //things to do every second
+    //    $scope.RefreshMessages();
+    //}
 }])
 
 app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
