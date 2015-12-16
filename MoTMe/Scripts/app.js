@@ -12,7 +12,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
             $scope.user = data;
             console.log($scope.user);
         })
-        .error(function (error) { alert(error.error) });
+        .error(function (error) { console.log(error.error) });
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
@@ -23,7 +23,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             $scope.contacts = data;
             console.log($scope.users);
         })
-        .error(function (error) { alert(error.error) });
+        .error(function (error) { console.log(error.error) });
 
 
     $scope.setClickedContact = function (contact) {
@@ -51,7 +51,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             $scope.messages = data;
             console.log($scope.messages);
         })
-        .error(function (error) { alert(error.error) });
+        .error(function (error) { console.log(error.error) });
     };
 
     $scope.AddMessage = function (message) {
@@ -110,13 +110,7 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
                 contactId: otherUserId
             }
         }).success(function () {
-            console.log("added to contacts");
-            $http.get("/Manage/GetContactsByUserId/" + $scope.user.Id)
-                .success(function (data) {
-                    $scope.contacts = data;
-                    console.log($scope.contacts);
-                })
-                .error(function (error) { alert(error.error) });
+            console.log("request sent");
         });
     };
 }]);
@@ -133,13 +127,13 @@ app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             .success(function (data) {
                 $scope.UserIdLink = data;
             })
-            .error(function (error) { alert(error.error) });
+            .error(function (error) { console.log(error.error) });
 
         $http.get("/Manage/GetUserId")
             .success(function (data) {
                 $scope.UserId = data;
             })
-            .error(function (error) { alert(error.error) });
+            .error(function (error) { console.log(error.error) });
     }
 }]);
 
