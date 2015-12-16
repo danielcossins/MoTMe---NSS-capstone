@@ -97,20 +97,21 @@ namespace MoTMe.Models
         public void AddContact(int userId, int contactId)
         {
             //checks if user already has that contact
-            if(!ContactExistsAlready(userId, contactId))
-            {
+            //if(!ContactExistsAlready(userId, contactId))
+            //{
                 Contact contact = new Contact();
                 contact.UserId = userId;
                 contact.ContactId = contactId;
                 _context.Contacts.Add(contact);
                 _context.SaveChanges();
-            }
+            //}
         }
 
         public bool ContactExistsAlready(int uid, int cid)
         {
             var query = from c in _context.Contacts where (c.UserId == uid) && (c.ContactId == cid) select c;
-            if(query == null)
+            var queryResult = query.ToList<Contact>();
+            if(queryResult.Count == 0)
             {
                 return false;
             }

@@ -403,5 +403,44 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(3, actual[1].ContactId);
             Assert.AreEqual(4, actual[2].ContactId);
         }
+
+        [TestMethod]
+        public void TestContactExistsAlready()
+        {
+            var list = new List<Contact>
+            {
+                new Contact { UserId = 1, ContactId = 2 },
+                new Contact { UserId = 1, ContactId = 3 },
+                new Contact { UserId = 1, ContactId = 4 },
+            };
+
+            mock_contact_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
+
+            bool exists1 = repository.ContactExistsAlready(1, 2);
+            bool exists2 = repository.ContactExistsAlready(1, 5);
+
+            Assert.AreEqual(true, exists1);
+            Assert.AreEqual(false, exists2);
+        }
+
+        //[TestMethod]
+        //public void TestAddToContacts()
+        //{
+        //    var list = new List<Contact>
+        //    {
+        //        new Contact { UserId = 1, ContactId = 2 },
+        //        new Contact { UserId = 1, ContactId = 3 },
+        //        new Contact { UserId = 1, ContactId = 4 },
+        //    };
+
+        //    mock_contact_set.Object.AddRange(list);
+
+        //    ConnectMocksToDataStore(list);
+
+        //    repository.AddContact(1, 5);
+        //    Assert.AreEqual(4, repository.GetContactsByUserId(1).Count);
+        //}
     }
 }
