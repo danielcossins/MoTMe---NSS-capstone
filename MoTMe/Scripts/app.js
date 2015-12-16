@@ -17,11 +17,23 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.body = "";
-    $http.get("/Manage/GetAllUsersJSON")
+    //$http.get("/Manage/GetAllUsersJSON")
+    //    .success(function (data) {
+    //        console.log(data);
+    //        $scope.contacts = data;
+    //        console.log($scope.users);
+    //    })
+    //    .error(function (error) { console.log(error.error) });
+    $http({
+        url: "/Manage/GetContactsByUserId/",
+        method: "GET",
+        params: {
+            uid: $scope.user.Id
+        }
+    })
         .success(function (data) {
             console.log(data);
             $scope.contacts = data;
-            console.log($scope.users);
         })
         .error(function (error) { console.log(error.error) });
 
