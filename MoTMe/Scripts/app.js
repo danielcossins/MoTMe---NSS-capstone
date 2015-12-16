@@ -17,13 +17,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.body = "";
-    //$http.get("/Manage/GetAllUsersJSON")
-    //    .success(function (data) {
-    //        console.log(data);
-    //        $scope.contacts = data;
-    //        console.log($scope.users);
-    //    })
-    //    .error(function (error) { console.log(error.error) });
+    //Get contacts for the user
     $http({
         url: "/Manage/GetContactsByUserId/",
         method: "GET",
@@ -37,17 +31,20 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         })
         .error(function (error) { console.log(error.error) });
 
-
+    //set which contact the user has clicked on
     $scope.setClickedContact = function (contact) {
         $scope.clickedContact = contact;
         console.log($scope.clickedContact);
         $scope.RefreshMessages();
         //window.scrollTo(0, document.body.scrollHeight);
     };
-
+    
+    //refresh the dom with new messages
     $scope.RefreshMessages = function () {
         console.log($scope.user);
         console.log($scope.clickedContact.Id);
+        //Get a specific number of the latest messgaes between
+        //the user and this certain contact
         $http({
             url: "/Manage/GetMessagesForOneContact_CertainNumber/",
             method: "GET",
@@ -66,11 +63,9 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         .error(function (error) { console.log(error.error) });
     };
 
+    //add a message to the database
     $scope.AddMessage = function (message) {
-        console.log($scope.user);
-        console.log($scope.clickedContact);
         console.log($scope.clickedContact.Id);
-        console.log(message);
         if (message != "" && message != null && message != undefined) {
             $http({
                 url: "/Manage/AddMessage",
@@ -81,28 +76,32 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                     recieverId: $scope.clickedContact.Id
                 }
             }).success(function () {
+                //refresh database after message is added
                 $scope.RefreshMessages();
+                //set the input field to null again
                 $scope.body = "";
             });
         }
         $scope.RefreshMessages();
     };
 
+    //convert the json date to a javascript date
     function ChangeDate(messageArr) {
         for (var i = 0; i < messageArr.length; i++) {
             messageArr[i].Date = new Date(parseInt(messageArr[i].Date.replace('/Date(', ''))).toString();
         }
     }
 
-    //This code will run every second//
+    //This code will run every second
+    //updates dom with the latest version of messages every second
     $(function () {
         setInterval(oneSecondFunction, 1000);
     });
-
     function oneSecondFunction() {
         //things to do every second
         $scope.RefreshMessages();
     }
+    ////////////////////////////
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
