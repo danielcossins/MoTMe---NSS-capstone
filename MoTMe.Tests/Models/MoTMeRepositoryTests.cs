@@ -389,8 +389,10 @@ namespace MoTMe.Tests.Models
             var list = new List<Contact>
             {
                 new Contact { UserId = 1, ContactId = 2 },
+                new Contact { UserId = 3, ContactId = 1 },
                 new Contact { UserId = 1, ContactId = 3 },
                 new Contact { UserId = 1, ContactId = 4 },
+                new Contact { UserId = 2, ContactId = 4 },
             };
 
             mock_contact_set.Object.AddRange(list);
@@ -402,6 +404,7 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(2, actual[0].ContactId);
             Assert.AreEqual(3, actual[1].ContactId);
             Assert.AreEqual(4, actual[2].ContactId);
+            Assert.AreEqual(3, actual.Count);
         }
 
         [TestMethod]
@@ -424,6 +427,39 @@ namespace MoTMe.Tests.Models
             Assert.AreEqual(true, exists1);
             Assert.AreEqual(false, exists2);
         }
+
+        //[TestMethod]
+        //public void TestGetContactUsersByUserId()
+        //{
+        //    var contactList = new List<Contact>
+        //    {
+        //        new Contact { UserId = 1, ContactId = 2 },
+        //        new Contact { UserId = 1, ContactId = 3 },
+        //        new Contact { UserId = 1, ContactId = 4 },
+        //    };
+
+        //    mock_contact_set.Object.AddRange(contactList);
+
+        //    ConnectMocksToDataStore(contactList);
+
+        //    var userList = new List<User>
+        //    {
+        //        new User { Id = 1, Name = "name1", Phone = "1234567890", UserIdLink = "11111111111111111111111111111111111" },
+        //        new User { Id = 2, Name = "name2", Phone = "1234567890", UserIdLink = "11111111111111111111111111111111111" },
+        //        new User { Id = 3, Name = "name3", Phone = "1234567890", UserIdLink = "11111111111111111111111111111111111" },
+        //        new User { Id = 3, Name = "name4", Phone = "1234567890", UserIdLink = "11111111111111111111111111111111111" },
+        //    };
+
+        //    mock_set.Object.AddRange(userList);
+
+        //    ConnectMocksToDataStore(userList);
+
+        //    List<User> actual = repository.GetContactUsersByUserId(1);
+
+        //    Assert.AreEqual("name2", actual[0].Name);
+        //    Assert.AreEqual("name3", actual[1].Name);
+        //    Assert.AreEqual("name4", actual[2].Name);
+        //}
         //TEST NOT PASSING for some silly reason, but it works in the code so
         //[TestMethod]
         //public void TestAddToContacts()

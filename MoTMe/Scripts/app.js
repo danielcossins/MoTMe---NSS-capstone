@@ -6,20 +6,32 @@
 ]);
 
 app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    $http.get("/Manage/GetUserObjectJSON")
-        .success(function (data) {
-            console.log(data);
-            $scope.user = data;
-            console.log($scope.user);
-        })
-        .error(function (error) { console.log(error.error) });
+    //$http.get("/Manage/GetUserObjectJSON")
+    //    .success(function (data) {
+    //        console.log(data);
+    //        $scope.user = data;
+    //        console.log($scope.user);
+    //    })
+    //    .error(function (error) { console.log(error.error) });
 }])
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.body = "";
     //Get contacts for the user
+    //$http.get("/Manage/GetAllUsersJSON")
+    //    .success(function (data) {
+    //        console.log(data);
+    //        $scope.contacts = data;
+    //        console.log($scope.users);
+    //    })
+    //    .error(function (error) { console.log(error.error) });
+    $http.get("/Manage/GetUserObjectJSON")
+        .success(function (data) {
+            console.log(data);
+            $scope.user = data;
+            console.log($scope.user);
     $http({
-        url: "/Manage/GetContactsByUserId/",
+        url: "/Manage/GetContactUsersByUserId/",
         method: "GET",
         params: {
             uid: $scope.user.Id
@@ -28,8 +40,12 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         .success(function (data) {
             console.log(data);
             $scope.contacts = data;
+            console.log($scope.contacts);
         })
         .error(function (error) { console.log(error.error) });
+        })
+        .error(function (error) { console.log(error.error) });
+    
 
     //set which contact the user has clicked on
     $scope.setClickedContact = function (contact) {

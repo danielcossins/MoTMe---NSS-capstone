@@ -126,5 +126,16 @@ namespace MoTMe.Models
             var query = from c in _context.Contacts where c.UserId == userId select c;
             return query.ToList<Contact>();
         }
+
+        public List<User> GetContactUsersByUserId(int userId)
+        {
+            var contacts = GetContactsByUserId(userId);
+            List<User> users = new List<User>();
+            for(int i=0; i<contacts.Count; i++)
+            {
+                users.Add(GetUserById(contacts[i].ContactId));
+            }
+            return users;
+        }
     }
 }
