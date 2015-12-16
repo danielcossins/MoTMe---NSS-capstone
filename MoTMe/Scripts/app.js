@@ -6,22 +6,36 @@
 ]);
 
 app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    //$http.get("/Manage/GetUserObjectJSON")
-    //    .success(function (data) {
-    //        console.log(data);
-    //        $scope.user = data;
-    //        console.log($scope.user);
-    //    })
-    //    .error(function (error) { console.log(error.error) });
-}])
-
-app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    $scope.body = "";
     $http.get("/Manage/GetUserObjectJSON")
         .success(function (data) {
             console.log(data);
             $scope.user = data;
             console.log($scope.user);
+        })
+        .error(function (error) { console.log(error.error) });
+}])
+
+app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    $scope.body = "";
+    //$http.get("/Manage/GetUserObjectJSON")
+    //    .success(function (data) {
+    //        console.log(data);
+    //        $scope.user = data;
+    //        console.log($scope.user);
+            
+    //    })
+    //    .error(function (error) { console.log(error.error) });
+
+    var changed = false;
+    $scope.$watch('user', function (newValue, oldValue) {
+        //this will prevent the initial running of $watch
+        if (changed == false) {
+            changed = true;
+        } else {
+//----------EVERYTHING IN HERE WILL RUN ONCE THE USER OBJECT IS DEFINED------------
+            console.log(newValue, oldValue);
+
+
             //Getting contacts
             $http({
                 url: "/Manage/GetContactUsersByUserId/",
@@ -36,13 +50,9 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                     console.log($scope.contacts);
                 })
                 .error(function (error) { console.log(error.error) });
-            ///////////////////////////////////////
-        })
-        .error(function (error) { console.log(error.error) });
-
-    $scope.$watch('user', function (newValue, oldValue) {
-        
+        }
     });
+
     
 
     //set which contact the user has clicked on
@@ -108,13 +118,13 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 
     //This code will run every second
     //updates dom with the latest version of messages every second
-    $(function () {
-        setInterval(oneSecondFunction, 1000);
-    });
-    function oneSecondFunction() {
-        //things to do every second
-        $scope.RefreshMessages();
-    }
+    //$(function () {
+    //    setInterval(oneSecondFunction, 1000);
+    //});
+    //function oneSecondFunction() {
+    //    //things to do every second
+    //    $scope.RefreshMessages();
+    //}
     ////////////////////////////
 }]);
 
@@ -127,6 +137,7 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
         .error(function (error) { alert(error.error) });
 
     $scope.AddToContacts = function (userId, otherUserId) {
+        console.log(userId, otherUserId);
         $http({
             url: "/Manage/AddContact",
             method: "POST",
