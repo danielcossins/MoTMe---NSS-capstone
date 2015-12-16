@@ -6,8 +6,8 @@
 <div ng-controller="ContactCtrl">
 <input type="text" class="form-control">
 
-<div class="panel panel-default" ng-repeat="otherUser in users" ng-if="otherUser.Id != user.Id">
+<div class="panel panel-default" ng-repeat="(index, otherUser) in users" ng-if="otherUser.Id != user.Id">
     <h1>{{otherUser.Name}}</h1>
-    <button type="button" ng-click="AddToContacts(user.Id, otherUser.Id)">Add to Contacts</button>
+    <button type="button" ng-click="AddToContacts(user.Id, otherUser.Id, index)">Add to Contacts</button>
 </div>
 </div>

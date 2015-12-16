@@ -119,13 +119,6 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    //$http.get("/Manage/GetAllUsersJSON")
-    //    .success(function (data) {
-    //        console.log("users", data);
-    //        $scope.users = data;
-    //    })
-    //    .error(function (error) { console.log(error.error) });
-
     var changed = false;
     $scope.$watch('user', function (newValue, oldValue) {
         //this will prevent the initial running of $watch
@@ -135,7 +128,7 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
             //----------EVERYTHING IN HERE WILL RUN ONCE THE USER OBJECT IS DEFINED------------
             console.log(newValue, oldValue);
 
-            //Getting contacts
+            //Getting users that are not already contacts
             $http({
                 url: "/Manage/GetUsersThatAreNotContacts/",
                 method: "GET",
@@ -152,8 +145,8 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
         }
     });
 
-    $scope.AddToContacts = function (userId, otherUserId) {
-        console.log(userId, otherUserId);
+    $scope.AddToContacts = function (userId, otherUserId, index) {
+        console.log(userId, otherUserId, index);
         $http({
             url: "/Manage/AddContact",
             method: "POST",
@@ -163,6 +156,7 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
             }
         }).success(function () {
             console.log("request sent");
+            $scope.users.splice(index, 1);
         });
     };
 }]);
@@ -186,7 +180,7 @@ app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
                 $scope.UserId = data;
             })
             .error(function (error) { console.log(error.error) });
-    }
+    };
 }]);
 
 app.directive('myEnter', function () {
