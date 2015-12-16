@@ -366,14 +366,16 @@ namespace MoTMe.Tests.Models
         //    Assert.AreEqual("new message", repository.GetMessageById(4).Body);
         //}
 
-        //[TestMethod]
-        //public void TestAddContactToUser()
-        //{
-        //    int expected = 3;
+        [TestMethod]
+        public void TestAddContactToUser()
+        {
+            int expected = 3;
 
-        //    repository.AddContact(1, 3);
+            repository.AddContact(1, 3);
 
-        //    Assert.AreEqual(expected, repository.GetContactsByUserId(1));
-        //}
+            var actual = repository.GetContactsByUserId(1);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
