@@ -101,6 +101,7 @@ namespace MoTMe.Models
             contact.UserId = userId;
             contact.ContactId = contactId;
             _context.Contacts.Add(contact);
+            _context.SaveChanges();
         }
 
         public List<Contact> GetContactsByUserId(int userId)
