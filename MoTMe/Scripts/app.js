@@ -119,12 +119,38 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    $http.get("/Manage/GetAllUsersJSON")
-        .success(function (data) {
-            console.log("users", data);
-            $scope.users = data;
-        })
-        .error(function (error) { alert(error.error) });
+    //$http.get("/Manage/GetAllUsersJSON")
+    //    .success(function (data) {
+    //        console.log("users", data);
+    //        $scope.users = data;
+    //    })
+    //    .error(function (error) { console.log(error.error) });
+
+    var changed = false;
+    $scope.$watch('user', function (newValue, oldValue) {
+        //this will prevent the initial running of $watch
+        if (changed == false) {
+            changed = true;
+        } else {
+            //----------EVERYTHING IN HERE WILL RUN ONCE THE USER OBJECT IS DEFINED------------
+            console.log(newValue, oldValue);
+
+            //Getting contacts
+            $http({
+                url: "/Manage/GetUsersThatAreNotContacts/",
+                method: "GET",
+                params: {
+                    uid: $scope.user.Id
+                }
+            })
+                .success(function (data) {
+                    console.log(data);
+                    $scope.users = data;
+                    console.log($scope.users);
+                })
+                .error(function (error) { console.log(error.error) });
+        }
+    });
 
     $scope.AddToContacts = function (userId, otherUserId) {
         console.log(userId, otherUserId);

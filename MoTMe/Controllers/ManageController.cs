@@ -90,6 +90,12 @@ namespace MoTMe.Controllers
             string jsonString = javaScriptSerializer.Serialize(repo.GetContactUsersByUserId(uid));
             return jsonString;
         }
+
+        public string GetUsersThatAreNotContacts(int uid)
+        {
+            string jsonString = javaScriptSerializer.Serialize(repo.GetUsersThatAreNotAContact(uid));
+            return jsonString;
+        }
         /////////////////////////////
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

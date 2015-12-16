@@ -137,5 +137,14 @@ namespace MoTMe.Models
             }
             return users;
         }
+
+        public List<User> GetUsersThatAreNotAContact(int uid)
+        {
+            var contacts = GetContactUsersByUserId(uid);
+            var allUsers = GetAllUsers();
+
+            List<User> result = allUsers.Except(contacts).ToList();
+            return result;
+        }
     }
 }
