@@ -15,6 +15,7 @@ namespace MoTMe.Tests.Models
         private Mock<MoTMeContext> mock_context;
         private Mock<DbSet<User>> mock_set;
         private Mock<DbSet<Message>> mock_message_set;
+        private Mock<DbSet<Contact>> mock_contact_set;
         private MoTMeRepository repository;
 
         private void ConnectMocksToDataStore(IEnumerable<User> data_store)
@@ -45,12 +46,27 @@ namespace MoTMe.Tests.Models
             mock_context.Setup(a => a.Messages).Returns(mock_message_set.Object);
         }
 
+        private void ConnectMocksToDataStore(IEnumerable<Contact> data_store)
+        {
+            var data_source = data_store.AsQueryable<Contact>();
+            // HINT HINT: var data_source = (data_store as IEnumerable<Jot>).AsQueryable();
+            // Convince LINQ that our Mock DbSet is a (relational) Data store.
+            mock_contact_set.As<IQueryable<Contact>>().Setup(data => data.Provider).Returns(data_source.Provider);
+            mock_contact_set.As<IQueryable<Contact>>().Setup(data => data.Expression).Returns(data_source.Expression);
+            mock_contact_set.As<IQueryable<Contact>>().Setup(data => data.ElementType).Returns(data_source.ElementType);
+            mock_contact_set.As<IQueryable<Contact>>().Setup(data => data.GetEnumerator()).Returns(data_source.GetEnumerator());
+
+            // This is Stubbing the Jots property getter
+            mock_context.Setup(a => a.Contacts).Returns(mock_contact_set.Object);
+        }
+
         [TestInitialize]
         public void Initialize()
         {
             mock_context = new Mock<MoTMeContext>();
             mock_set = new Mock<DbSet<User>>();
             mock_message_set = new Mock<DbSet<Message>>();
+            mock_contact_set = new Mock<DbSet<Contact>>();
             repository = new MoTMeRepository(mock_context.Object);
         }
 
@@ -60,6 +76,7 @@ namespace MoTMe.Tests.Models
             mock_context = null;
             mock_set = null;
             mock_message_set = null;
+            mock_contact_set = null;
             repository = null;
         }
 
@@ -367,15 +384,24 @@ namespace MoTMe.Tests.Models
         //}
 
         [TestMethod]
-        public void TestAddContactToUser()
+        public void TestGetContactsByUserId()
         {
-            int expected = 3;
+            var list = new List<Contact>
+            {
+                new Contact { UserId = 1, ContactId = 2 },
+                new Contact { UserId = 1, ContactId = 3 },
+                new Contact { UserId = 1, ContactId = 4 },
+            };
 
-            repository.AddContact(1, 3);
+            mock_contact_set.Object.AddRange(list);
+
+            ConnectMocksToDataStore(list);
 
             var actual = repository.GetContactsByUserId(1);
 
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(2, actual[0].ContactId);
+            Assert.AreEqual(3, actual[1].ContactId);
+            Assert.AreEqual(4, actual[2].ContactId);
         }
     }
 }
