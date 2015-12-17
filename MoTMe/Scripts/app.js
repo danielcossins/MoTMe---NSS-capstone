@@ -17,6 +17,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.body = "";
+    $scope.sms = false;
 
     var changed = false;
     $scope.$watch('user', function (newValue, oldValue) {
@@ -100,6 +101,19 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.RefreshMessages();
     };
 
+    $scope.SendSMS = function (message) {
+        $http({
+            url: "/Manage/SendSMS",
+            method: "POST",
+            data: {
+                number: $scope.clickedContact.Phone,
+                content: message
+            }
+        }).success(function () {
+            console.log("request sent");
+        });
+    }
+
     //convert the json date to a javascript date
     function ChangeDate(messageArr) {
         for (var i = 0; i < messageArr.length; i++) {
@@ -109,13 +123,13 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 
     //This code will run every second
     //updates dom with the latest version of messages every second
-    $(function () {
-        setInterval(oneSecondFunction, 1000);
-    });
-    function oneSecondFunction() {
-        //things to do every second
-        $scope.RefreshMessages();
-    }
+    //$(function () {
+    //    setInterval(oneSecondFunction, 1000);
+    //});
+    //function oneSecondFunction() {
+    //    //things to do every second
+    //    $scope.RefreshMessages();
+    //}
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {

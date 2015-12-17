@@ -96,6 +96,14 @@ namespace MoTMe.Controllers
             string jsonString = javaScriptSerializer.Serialize(repo.GetUsersThatAreNotAContact(uid));
             return jsonString;
         }
+        //-----SMS calls
+
+        public void SendSMS(string number, string content)
+        {
+            SMS sms = new SMS();
+            sms.SendSMS(number, content);
+        }
+
         /////////////////////////////
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
