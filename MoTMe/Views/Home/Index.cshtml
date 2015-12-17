@@ -3,7 +3,7 @@
     //Layout = "~/Views/Shared/MoTMe_layout.cshtml";
 }
 <div ng-controller="IndexCtrl">
-<div class="row">
+<div>
     <div class="col-sm-3 middle" id="leftChat">
         <h1 class="middle">contacts</h1>
         <div class="contact" ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
@@ -12,7 +12,7 @@
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
     <div class="col-sm-6" id="middleChat">
-        <div ng-if="clickedContact != undefined">
+        <div id="insideMiddle" ng-if="clickedContact != undefined">
             <input type="checkbox" ng-model="sms" />Send text message
             @*<button type="button" class="btn btn-default" ng-model="sms">Send Text Message</button>*@
             <div ng-hide="sms">

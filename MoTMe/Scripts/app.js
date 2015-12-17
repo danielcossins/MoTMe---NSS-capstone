@@ -19,7 +19,6 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     $scope.body = "";
     $scope.sms = false
     $scope.postSendMessage = "";
-    //$('#leftChat').affix()
 
     var changed = false;
     $scope.$watch('user', function (newValue, oldValue) {
@@ -54,7 +53,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.clickedContact = contact;
         console.log($scope.clickedContact);
         $scope.RefreshMessages();
-        window.scrollTo(0, document.body.scrollHeight);
+        //window.scrollTo(0, document.body.scrollHeight);
     };
     
     //refresh the dom with new messages

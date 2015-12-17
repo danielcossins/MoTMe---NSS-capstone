@@ -8,6 +8,7 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    height: calc(100vh - 70px);
 }
 
 .navbar-inverse{
@@ -44,17 +45,22 @@ div#chat{
 
 #leftChat{
     background-color: #534DFF;
-    height: 100vh;
+    height: calc(100vh - 50px);
 }
 
 #middleChat{
     background-color: #FFDA86;
-    height: 100vh;
+    height: calc(100vh - 50px);
+    overflow: scroll;
+}
+
+#insideMiddele{
     overflow: scroll;
 }
 
 #rightChat{
     background-color: #76E859;
+    height: calc(100vh - 50px);
 }
 
 .contact{
