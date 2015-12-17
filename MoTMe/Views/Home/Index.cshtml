@@ -33,6 +33,7 @@
             <div ng-show="sms">
                 <textarea class="form-control" ng-model="smsContent" placeholder="Enter your text message"></textarea>
                 <button class="btn btn-default" ng-click="SendSMS(smsContent)">Send Text</button>
+                <h3>{{postSendMessage}}</h3>
             </div>
         </div>
         <h3 ng-if="clickedContact == undefined">Click a user to message</h3>

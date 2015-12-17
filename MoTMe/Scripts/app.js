@@ -17,7 +17,8 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.body = "";
-    $scope.sms = false;
+    $scope.sms = false
+    $scope.postSendMessage = "";
 
     var changed = false;
     $scope.$watch('user', function (newValue, oldValue) {
@@ -101,16 +102,21 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     };
 
     $scope.SendSMS = function (message) {
-        $http({
-            url: "/Manage/SendSMS",
-            method: "POST",
-            data: {
-                number: $scope.clickedContact.Phone,
-                content: message
-            }
-        }).success(function () {
-            console.log("request sent");
-        });
+        if (message.length < 160) {
+            $http({
+                url: "/Manage/SendSMS",
+                method: "POST",
+                data: {
+                    number: $scope.clickedContact.Phone,
+                    content: message
+                }
+            }).success(function () {
+                console.log("request sent");
+                $scope.postSendMessage = "Message sent!";
+            });
+        } else {
+            $scope.postSendMessage = "Message is to long. Please shorten it.";
+        }
     }
 
     //convert the json date to a javascript date
