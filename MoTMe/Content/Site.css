@@ -12,9 +12,9 @@ body {
     height: calc(100vh - 70px);
 }
 
-.navbar-inverse{
+/*.navbar-inverse{
     background-color: #E8596A;
-}
+}*/
 
 .middle{
   display: block;
@@ -53,7 +53,7 @@ div#chat{
 #middleChat{
     background-color: #FFDA86;
     height: calc(100vh - 50px);
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #insideMiddele{

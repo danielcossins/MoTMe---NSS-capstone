@@ -11,7 +11,7 @@
         </div>
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
-    <div class="col-sm-6" id="middleChat">
+    <div class="col-sm-9" id="middleChat">
         <div id="insideMiddle" ng-if="clickedContact != undefined">
             @*<button type="button" class="btn btn-default" ng-model="sms">Send Text Message</button>*@
             <input type="checkbox" ng-model="sms" />Send text message
@@ -36,8 +36,8 @@
         </div>
         <h3 ng-if="clickedContact == undefined" class="middle">Click a user to message</h3>
     </div>
-    <div class="col-sm-3 middle" id="rightChat">
+    @*<div class="col-sm-3 middle" id="rightChat">
         <h1>alerts</h1>
-    </div>
+    </div>*@
 </div>
 </div>
