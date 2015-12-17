@@ -7,6 +7,21 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+}
+
+.navbar-inverse{
+    background-color: #E8596A;
+}
+
+.middle{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.white{
+    color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -25,4 +40,16 @@ body {
 
 div#chat{
     display: inline-block;
+}
+
+#leftChat{
+    background-color: #534DFF;
+}
+
+#middleChat{
+    background-color: #FFDA86;
+}
+
+#rightChat{
+    background-color: #76E859;
 }

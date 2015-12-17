@@ -4,31 +4,37 @@
 }
 <div ng-controller="IndexCtrl">
 <div class="row">
-    <div class="col-sm-3">
-        <h1>contacts</h1>
+    <div class="col-sm-3" id="leftChat">
+        <h1 class="middle">contacts</h1>
         <div ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
             <h3>{{contact.Name}}</h3>
         </div>
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
-    <div class="col-sm-6">
-        <div id="chat" ng-if="clickedContact != undefined">
+    <div class="col-sm-6" id="middleChat">
+        <div ng-if="clickedContact != undefined">
             <input type="checkbox" ng-model="sms" />Send text message
             @*<button type="button" class="btn btn-default" ng-model="sms">Send Text Message</button>*@
             <div ng-hide="sms">
-                <h1>messages</h1>
+                <h1 class=" middle">messages</h1>
                 <h2>{{clickedContact.Name}}</h2>
-                <div class="panel panel-body" ng-repeat="message in messages">
-                    <h3 ng-if="message.AuthorId == user.Id">You</h3>
-                    <h3 ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
-                    <h6>{{message.Date}}</h6>
-                    <h4>{{message.Body}}</h4>
+                <div class="panel panel-default" ng-repeat="message in messages">
+                    <div class="panel-heading">
+                        <h3  ng-if="message.AuthorId == user.Id">You</h3>
+                        <h3  ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
+                        <h6>{{message.Date}}</h6>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{message.Body}}</h4>
+                    </div>
                 </div>
                 <br />
                 <br />
                 <br />
+                <div id="chat">
                     <input type="text" class="" ng-model="$parent.body" my-enter="AddMessage(body)"/>
                     <button class="btn btn-default" ng-click="AddMessage(body)">Send</button>
+                </div>
             </div>
             <div ng-show="sms">
                 <textarea class="form-control" ng-model="smsContent" placeholder="Enter your text message"></textarea>
@@ -36,9 +42,9 @@
                 <h3>{{postSendMessage}}</h3>
             </div>
         </div>
-        <h3 ng-if="clickedContact == undefined">Click a user to message</h3>
+        <h3 ng-if="clickedContact == undefined" class="middle">Click a user to message</h3>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 middle" id="rightChat">
         <h1>alerts</h1>
     </div>
 </div>

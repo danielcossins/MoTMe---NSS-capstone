@@ -102,6 +102,8 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     };
 
     $scope.SendSMS = function (message) {
+        $scope.postSendMessage = "Sending . . ."
+        message = "A MoTMe message from " + $scope.user.Name + ":    " + message;
         if (message.length < 160) {
             $http({
                 url: "/Manage/SendSMS",
@@ -128,13 +130,15 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 
     //This code will run every second
     //updates dom with the latest version of messages every second
-    $(function () {
-        setInterval(oneSecondFunction, 1000);
-    });
-    function oneSecondFunction() {
-        //things to do every second
-        $scope.RefreshMessages();
-    }
+    //$(function () {
+    //    setInterval(oneSecondFunction, 1000);
+    //});
+    //function oneSecondFunction() {
+    //    //things to do every second
+    //    if ($scope.clickedContact != undefined) {
+    //        $scope.RefreshMessages();
+    //    }
+    //}
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
