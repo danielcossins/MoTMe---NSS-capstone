@@ -5,10 +5,64 @@
   }
 ]);
 
+app.controller('PhoneCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    console.log("phone");
+    $scope.number = "";
+    $scope.isValidated = false;
+    var code = GetRandomCode();
+
+    function CheckIfIsAPhoneNumber() {
+        $scope.number = angular.element('#PhoneNumber').val();
+        console.log($scope.number);
+        if ( !isNaN($scope.number) && $scope.number.length > 9 && $scope.number.length < 16) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $scope.SendCode = function () {
+        if (CheckIfIsAPhoneNumber()) {
+            console.log($scope.number);
+            console.log(code);
+            $http({
+                url: "/Manage/SendSMS",
+                method: "POST",
+                data: {
+                    number: $scope.number,
+                    content: code
+                }
+            }).success(function () {
+                console.log("request sent");
+            });
+        } else {
+            console.log("not a valid phone number");
+        }
+    }
+
+    function GetRandomCode()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 5; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        $scope.code = text;
+        return text;
+    }
+
+    $scope.CheckIfMatchesCode = function () {
+        if ($scope.userCode = $scope.code) {
+            $scope.isValidated = true;
+        } else {
+
+        }
+    }
+}]);
+
 app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $http.get("/Manage/GetUserObjectJSON")
         .success(function (data) {
-            console.log(data);
             $scope.user = data;
             console.log($scope.user);
         })
@@ -103,7 +157,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     };
 
     $scope.SendSMS = function (message) {
-        $scope.postSendMessage = "Sending . . ."
+        $scope.postSendMessage = "Sending . . .";
         message = "A MoTMe message from " + $scope.user.Name + ":    " + message;
         if (message.length < 160) {
             $http({
