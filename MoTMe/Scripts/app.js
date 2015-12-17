@@ -125,6 +125,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     function ChangeDate(messageArr) {
         for (var i = 0; i < messageArr.length; i++) {
             messageArr[i].Date = new Date(parseInt(messageArr[i].Date.replace('/Date(', ''))).toString();
+            messageArr[i].Date = messageArr[i].Date.replace(' GMT-0600 (Central Standard Time)', '');
         }
     }
 
