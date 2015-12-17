@@ -4,10 +4,10 @@
 }
 <div ng-controller="IndexCtrl">
 <div class="row">
-    <div class="col-sm-3" id="leftChat">
+    <div class="col-sm-3 middle" id="leftChat">
         <h1 class="middle">contacts</h1>
-        <div ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
-            <h3>{{contact.Name}}</h3>
+        <div class="contact" ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
+            <span>{{contact.Name}}</span>
         </div>
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
@@ -25,7 +25,7 @@
                         <h6>{{message.Date}}</h6>
                     </div>
                     <div class="panel-body">
-                        <h4>{{message.Body}}</h4>
+                        <p>{{message.Body}}</p>
                     </div>
                 </div>
                 <br />

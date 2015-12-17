@@ -44,6 +44,7 @@ div#chat{
 
 #leftChat{
     background-color: #534DFF;
+    padding-right: -15px;
 }
 
 #middleChat{
@@ -52,4 +53,26 @@ div#chat{
 
 #rightChat{
     background-color: #76E859;
+}
+
+.contact{
+    background-color: #79D5FF;
+    /*border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;*/
+    border-radius: 20px;
+    margin: 4px;
+}
+.contact:hover{
+    cursor: pointer;
+    opacity: .6;
+    animation-name: change-opacity;
+    animation-duration: 200ms;
+}
+@keyframes change-opacity{
+  from {opacity: 1;}
+  to {opacity: .6;}
+}
+@keyframes change-opacity-reverse{
+  from {opacity: .6;}
+  to {opacity: 1;}
 }
