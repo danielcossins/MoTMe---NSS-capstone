@@ -17,8 +17,8 @@
             <input type="checkbox" ng-model="sms" />Send text message
             <div ng-hide="sms">
                 <div id="chat">
-                    <input type="text" class="" ng-model="$parent.body" my-enter="AddMessage(body)" />
-                    <button class="btn btn-default" ng-click="AddMessage(body)">Send</button>
+                    <input type="text" class="form-control" ng-model="$parent.body" my-enter="AddMessage(body)" />
+                    @*<button class="btn btn-default" ng-click="AddMessage(body)">Send</button>*@
                 </div>
                 <div ng-repeat="message in messages | reverse">
                     <h3 ng-if="message.AuthorId == user.Id">You</h3>

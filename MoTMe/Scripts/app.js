@@ -13,7 +13,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
             console.log($scope.user);
         })
         .error(function (error) { console.log(error.error) });
-}])
+}]);
 
 app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
     $scope.body = "";

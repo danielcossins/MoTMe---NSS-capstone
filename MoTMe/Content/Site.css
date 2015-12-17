@@ -42,6 +42,7 @@ body {
 
 div#chat{
     display: inline-block;
+    width: 100%;
 }
 
 #leftChat{
