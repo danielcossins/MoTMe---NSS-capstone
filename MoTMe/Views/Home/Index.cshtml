@@ -3,7 +3,6 @@
     //Layout = "~/Views/Shared/MoTMe_layout.cshtml";
 }
 <div ng-controller="IndexCtrl">
-<div>
     <div class="col-sm-3 middle" id="leftChat">
         <h1 class="middle">contacts</h1>
         <div class="contact noselect" ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
@@ -39,5 +38,4 @@
     @*<div class="col-sm-3 middle" id="rightChat">
         <h1>alerts</h1>
     </div>*@
-</div>
 </div>

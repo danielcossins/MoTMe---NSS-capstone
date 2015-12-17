@@ -4,6 +4,12 @@
 /*#FFDA86 - tanish*/
 /*#76E859 - greenish*/
 /*#79D5FF - bluish*/
+/*
+#dddfd4 - grey
+#fae596 - tanish
+#3fb0ac - bluinggreenish
+#173e43 - dark
+*/
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -12,9 +18,10 @@ body {
     height: calc(100vh - 70px);
 }
 
-/*.navbar-inverse{
-    background-color: #E8596A;
-}*/
+.navbar-inverse{
+    background-color: #173e43;
+    border-color: #173e43;
+}
 
 .middle{
   display: block;
@@ -46,18 +53,14 @@ div#chat{
 }
 
 #leftChat{
-    background-color: #534DFF;
+    background-color: #3fb0ac;
     height: calc(100vh - 50px);
 }
 
 #middleChat{
-    background-color: #FFDA86;
+    background-color: #dddfd4;
     height: calc(100vh - 50px);
     overflow-y: scroll;
-}
-
-#insideMiddele{
-    overflow: scroll;
 }
 
 #rightChat{
@@ -66,7 +69,7 @@ div#chat{
 }
 
 .contact{
-    background-color: #79D5FF;
+    background-color: #fae596;
     /*border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;*/
     border-radius: 20px;
@@ -78,6 +81,10 @@ div#chat{
     animation-name: change-opacity;
     animation-duration: 200ms;
 }
+/*@keyframes change-background{
+  from {background-color: none;}
+  to {background-color: ;}
+}*/
 @keyframes change-opacity{
   from {opacity: 1;}
   to {opacity: .6;}
