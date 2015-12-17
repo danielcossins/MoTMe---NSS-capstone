@@ -19,6 +19,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     $scope.body = "";
     $scope.sms = false
     $scope.postSendMessage = "";
+    var numberOfViewableMessages = 50;
 
     var changed = false;
     $scope.$watch('user', function (newValue, oldValue) {
@@ -68,7 +69,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             params: {
                 aid: $scope.user.Id,
                 rid: $scope.clickedContact.Id,
-                number: 10
+                number: numberOfViewableMessages
             }
         })
         .success(function (data) {
