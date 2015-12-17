@@ -13,20 +13,16 @@
     </div>
     <div class="col-sm-6" id="middleChat">
         <div id="insideMiddle" ng-if="clickedContact != undefined">
-            <input type="checkbox" ng-model="sms" />Send text message
             @*<button type="button" class="btn btn-default" ng-model="sms">Send Text Message</button>*@
             <div ng-hide="sms">
                 <h1 class=" middle">messages</h1>
                 <h2>{{clickedContact.Name}}</h2>
-                <div class="panel panel-default" ng-repeat="message in messages">
-                    <div class="panel-heading">
-                        <h3  ng-if="message.AuthorId == user.Id">You</h3>
-                        <h3  ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
-                        <h6>{{message.Date}}</h6>
-                    </div>
-                    <div class="panel-body">
-                        <p>{{message.Body}}</p>
-                    </div>
+                <div ng-repeat="message in messages">
+                    <h3 ng-if="message.AuthorId == user.Id">You</h3>
+                    <h3 ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
+                    <h6 style="color: gray; float: right;">{{message.Date}}</h6>
+                    <p>{{message.Body}}</p>
+                    <hr />
                 </div>
                 <br />
                 <br />
@@ -41,6 +37,7 @@
                 <button class="btn btn-default" ng-click="SendSMS(smsContent)">Send Text</button>
                 <h3>{{postSendMessage}}</h3>
             </div>
+                <input type="checkbox" ng-model="sms" />Send text message
         </div>
         <h3 ng-if="clickedContact == undefined" class="middle">Click a user to message</h3>
     </div>
