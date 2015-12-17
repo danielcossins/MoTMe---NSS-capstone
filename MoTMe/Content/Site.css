@@ -1,9 +1,4 @@
 ﻿/*THEME*/
-/*#534DFF - darkblue*/
-/*#E8596A - redish*/
-/*#FFDA86 - tanish*/
-/*#76E859 - greenish*/
-/*#79D5FF - bluish*/
 /*
 #dddfd4 - grey
 #fae596 - tanish
@@ -16,6 +11,9 @@ body {
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;*/
     font-family: Arial;
     height: calc(100vh - 70px);
+    color: #173e43;
+    background-color: #3fb0ac;
+    overflow:hidden;
 }
 
 .navbar-inverse{
@@ -45,16 +43,15 @@ body {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-
 div#chat{
     display: inline-block;
     width: 100%;
+    /*position: fixed;*/
 }
 
 #leftChat{
     background-color: #3fb0ac;
-    height: calc(100vh - 50px);
+    /*height: calc(100vh - 50px);*/
 }
 
 #middleChat{

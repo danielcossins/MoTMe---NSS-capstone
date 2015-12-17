@@ -8,7 +8,6 @@
         <div class="contact noselect" ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
             <span>{{contact.Name}}</span>
         </div>
-        @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
     </div>
     <div class="col-sm-9" id="middleChat">
         <div id="insideMiddle" ng-if="clickedContact != undefined">
@@ -16,7 +15,7 @@
             <input type="checkbox" ng-model="sms" />Send text message
             <div ng-hide="sms">
                 <div id="chat">
-                    <input type="text" class="form-control" ng-model="$parent.body" my-enter="AddMessage(body)" />
+                    <input type="text" class="" style="width: 100% !important;" ng-model="$parent.body" my-enter="AddMessage(body)" />
                     @*<button class="btn btn-default" ng-click="AddMessage(body)">Send</button>*@
                 </div>
                 <div ng-repeat="message in messages | reverse">
