@@ -6,7 +6,7 @@
 <div>
     <div class="col-sm-3 middle" id="leftChat">
         <h1 class="middle">contacts</h1>
-        <div class="contact" ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
+        <div class="contact noselect" ng-repeat="contact in contacts" ng-click="setClickedContact(contact)" ng-if="user.Id != contact.Id">
             <span>{{contact.Name}}</span>
         </div>
         @*<h3 ng-repeat="contact in contacts">{{contact.name}}</h3>*@
@@ -14,9 +14,12 @@
     <div class="col-sm-6" id="middleChat">
         <div id="insideMiddle" ng-if="clickedContact != undefined">
             @*<button type="button" class="btn btn-default" ng-model="sms">Send Text Message</button>*@
+            <input type="checkbox" ng-model="sms" />Send text message
             <div ng-hide="sms">
-                <h1 class=" middle">messages</h1>
-                <h2>{{clickedContact.Name}}</h2>
+                <div id="chat">
+                    <input type="text" class="" ng-model="$parent.body" my-enter="AddMessage(body)" />
+                    <button class="btn btn-default" ng-click="AddMessage(body)">Send</button>
+                </div>
                 <div ng-repeat="message in messages | reverse">
                     <h3 ng-if="message.AuthorId == user.Id">You</h3>
                     <h3 ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
@@ -24,20 +27,12 @@
                     <p>{{message.Body}}</p>
                     <hr />
                 </div>
-                <br />
-                <br />
-                <br />
-                <div id="chat">
-                    <input type="text" class="" ng-model="$parent.body" my-enter="AddMessage(body)"/>
-                    <button class="btn btn-default" ng-click="AddMessage(body)">Send</button>
-                </div>
             </div>
             <div ng-show="sms">
                 <textarea class="form-control" ng-model="smsContent" placeholder="Enter your text message"></textarea>
                 <button class="btn btn-default" ng-click="SendSMS(smsContent)">Send Text</button>
                 <h3>{{postSendMessage}}</h3>
             </div>
-                <input type="checkbox" ng-model="sms" />Send text message
         </div>
         <h3 ng-if="clickedContact == undefined" class="middle">Click a user to message</h3>
     </div>
