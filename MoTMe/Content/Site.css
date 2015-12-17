@@ -44,11 +44,13 @@ div#chat{
 
 #leftChat{
     background-color: #534DFF;
-    padding-right: -15px;
+    height: 100vh;
 }
 
 #middleChat{
     background-color: #FFDA86;
+    height: 100vh;
+    overflow: scroll;
 }
 
 #rightChat{
