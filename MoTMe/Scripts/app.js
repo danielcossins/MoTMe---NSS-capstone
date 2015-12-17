@@ -57,8 +57,8 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
     
     //refresh the dom with new messages
     $scope.RefreshMessages = function () {
-        console.log($scope.user);
-        console.log($scope.clickedContact.Id);
+        //if clickedContact is undefined, this will cut of the method before $http
+        $scope.clickedContact.Id = $scope.clickedContact.Id;
         //Get a specific number of the latest messgaes between
         //the user and this certain contact
         $http({
@@ -71,10 +71,9 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             }
         })
         .success(function (data) {
-            console.log(data);
             ChangeDate(data);
             $scope.messages = data;
-            console.log($scope.messages);
+            //console.log($scope.messages);
         })
         .error(function (error) { console.log(error.error) });
     };
@@ -123,13 +122,13 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
 
     //This code will run every second
     //updates dom with the latest version of messages every second
-    //$(function () {
-    //    setInterval(oneSecondFunction, 1000);
-    //});
-    //function oneSecondFunction() {
-    //    //things to do every second
-    //    $scope.RefreshMessages();
-    //}
+    $(function () {
+        setInterval(oneSecondFunction, 1000);
+    });
+    function oneSecondFunction() {
+        //things to do every second
+        $scope.RefreshMessages();
+    }
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
