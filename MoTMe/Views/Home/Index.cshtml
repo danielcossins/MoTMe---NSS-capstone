@@ -17,7 +17,7 @@
             <div ng-hide="sms">
                 <h1 class=" middle">messages</h1>
                 <h2>{{clickedContact.Name}}</h2>
-                <div ng-repeat="message in messages">
+                <div ng-repeat="message in messages | reverse">
                     <h3 ng-if="message.AuthorId == user.Id">You</h3>
                     <h3 ng-if="message.AuthorId == clickedContact.Id">{{clickedContact.Name}}</h3>
                     <h6 style="color: gray; float: right;">{{message.Date}}</h6>
