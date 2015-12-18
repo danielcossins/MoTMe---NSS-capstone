@@ -125,8 +125,7 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             }
         })
         .success(function (data) {
-            ChangeDate(data);
-            $scope.messages = data;
+            $scope.messages = ChangeDate(data);
             //console.log($scope.messages);
         })
         .error(function (error) { console.log(error.error) });
@@ -180,19 +179,20 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
             messageArr[i].Date = new Date(parseInt(messageArr[i].Date.replace('/Date(', ''))).toString();
             messageArr[i].Date = messageArr[i].Date.replace(' GMT-0600 (Central Standard Time)', '');
         }
+        return messageArr;
     }
 
-    //This code will run every second
-    //updates dom with the latest version of messages every second
-    //$(function () {
-    //    setInterval(oneSecondFunction, 1000);
-    //});
-    //function oneSecondFunction() {
-    //    //things to do every second
-    //    if ($scope.clickedContact != undefined) {
-    //        $scope.RefreshMessages();
-    //    }
-    //}
+//////This code will run every second
+//////updates dom with the latest version of messages every second
+    $(function () {
+        setInterval(oneSecondFunction, 1000);
+    });
+    function oneSecondFunction() {
+        //things to do every second
+        if ($scope.clickedContact != undefined) {
+            $scope.RefreshMessages();
+        }
+    }
 }]);
 
 app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
