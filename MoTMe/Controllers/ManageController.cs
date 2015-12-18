@@ -24,6 +24,11 @@ namespace MoTMe.Controllers
         }
 
 ////////Added methods
+        public string GetString()
+        {
+            return "this is a string";
+        }
+
         public string GetUserIdLink()
         {
             return User.Identity.GetUserId();

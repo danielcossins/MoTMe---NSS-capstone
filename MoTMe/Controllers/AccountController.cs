@@ -28,18 +28,6 @@ namespace MoTMe.Controllers
             SignInManager = signInManager;
         }
 
-        //////////Added methods
-        public void SendSMS(string number, string content)
-        {
-            SMS sms = new SMS();
-            sms.SendSMS(number, content);
-        }
-        
-        public string GetSomething(string str)
-        {
-            return str;
-        }
-/////////////////////
         public ApplicationSignInManager SignInManager
         {
             get

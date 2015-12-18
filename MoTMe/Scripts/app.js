@@ -6,26 +6,17 @@
 ]);
 
 app.controller('PhoneCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    //$http({
-    //    url: "/Manage/SendSMS/",
-    //    method: "POST",
-    //    data: {
-    //        number: "9132169521",
-    //        content: "test"
-    //    }
-    //}).success(function () {
-    //    console.log("request sent");
-    //});
     $http({
-        url: "/Account/GetSomething/",
+        url: "/Home/SendSMS/",
         method: "POST",
         data: {
-            number: "this is a string"
+            number: "9132169521",
+            content: "test"
         }
-    }).success(function (data) {
-        console.log(data);
+    }).success(function () {
+        console.log("request sent");
     });
-    $http.get("/Account/GetSomething")
+    $http.get("/Home/Get")
         .success(function (data) {
             console.log(data);
         })
@@ -36,7 +27,7 @@ app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $
     $http.get("/Manage/GetUserObjectJSON")
         .success(function (data) {
             $scope.user = data;
-            console.log($scope.user);
+            //console.log($scope.user);
         })
         .error(function (error) { console.log(error.error) });
 }]);

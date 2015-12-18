@@ -30,5 +30,16 @@ namespace MoTMe.Controllers
 
             return View();
         }
+
+        public string Get()
+        {
+            return "this is a string";
+        }
+
+        public void SendSMS(string number, string content)
+        {
+            SMS sms = new SMS();
+            sms.SendSMS(number, content);
+        }
     }
 }
