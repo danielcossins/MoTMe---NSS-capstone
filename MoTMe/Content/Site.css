@@ -15,6 +15,25 @@ body {
     background-color: #3fb0ac;
     overflow:hidden;
 }
+a{
+  color: #fae596;
+}
+a:link {
+  color: #fae596;
+}
+
+a:visited {
+  color: #fae596;
+}
+
+a:hover {
+  color: #fae596;
+}
+
+a:active {
+  color: #fae596;
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }
