@@ -1,6 +1,8 @@
 # MoTMe---NSS-capstone
 MoTMe is a project in the development process designed to ultimately be a simplified clone of Slack. Users will be able to send messages over MoTMe, as well as sms messages.
 
+Application is deployed on Azure here: http://motmensscapstone.azurewebsites.net/
+
 ###Current Working Features
 * User can go to the main page, click on another user, and send that user a direct message. The message goes to the database. The recieving user see's the message appear on his screen, with username, date, and message body. Both users can communicate back and forth.
 
