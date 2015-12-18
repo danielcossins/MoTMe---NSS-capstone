@@ -6,21 +6,55 @@
 ]);
 
 app.controller('PhoneCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    $http({
-        url: "/Home/SendSMS/",
-        method: "POST",
-        data: {
-            number: "9132169521",
-            content: "test"
+    $scope.number = "";
+    $scope.message = "";
+    $scope.isValidated = false;
+    var code = GetRandomCode();
+
+    function CheckIfIsAPhoneNumber() {
+        $scope.number = angular.element('#PhoneNumber').val();
+        console.log($scope.number);
+        if ( !isNaN($scope.number) && $scope.number.length > 9 && $scope.number.length < 16) {
+            return true;
+        } else {
+            return false;
         }
-    }).success(function () {
-        console.log("request sent");
-    });
-    $http.get("/Home/Get")
-        .success(function (data) {
-            console.log(data);
-        })
-        .error(function (error) { console.log(error.error) });
+    }
+
+    $scope.SendCode = function () {
+        if (CheckIfIsAPhoneNumber()) {
+            $http({
+                url: "/Home/SendSMS/",
+                method: "POST",
+                data: {
+                    number: $scope.number,
+                    content: code
+                }
+            }).success(function () {
+                console.log("request sent");
+            });
+        } else {
+            $scope.message = "Not a valid phone number";
+        }
+    }
+
+    function GetRandomCode()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 5; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    }
+
+    $scope.CheckIfMatchesCode = function () {
+        if ($scope.userCode === code) {
+            $scope.isValidated = true;
+        } else {
+            $scope.message = "Code was not correct. Please try again.";
+        }
+    }
 }]);
 
 app.controller('RootCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {

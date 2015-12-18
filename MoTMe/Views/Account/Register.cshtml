@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-<div ng-app="MoTMe" ng-controller="PhoneCtrl">
+<div ng-app="MoTMe" ng-controller="PhoneCtrl" style="padding: 25px;">
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
@@ -43,11 +43,12 @@
         </div>
     </div>
     <div class="form-group" ng-if="isValidated == false">
-        <button type="button" class="btn btn-default" ng-click="SendCode()">Get Phone code</button>
-        <input type="text" ng-model="userCode" />
         <div class="col-md-offset-2 col-md-10">
+        <button type="button" class="btn btn-default" ng-click="SendCode()">Get Phone code</button>
+        <input type="text" class="form-control" ng-model="userCode" />
             <button type="button" class="btn btn-default" ng-click="CheckIfMatchesCode()">Submit Code</button>
         </div>
+        <h3>{{message}}</h3>
     </div>
     <div class="form-group" ng-if="isValidated == true">
         <div class="col-md-offset-2 col-md-10">

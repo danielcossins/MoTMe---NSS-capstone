@@ -31,11 +31,7 @@ namespace MoTMe.Controllers
             return View();
         }
 
-        public string Get()
-        {
-            return "this is a string";
-        }
-
+        //Added methods
         public void SendSMS(string number, string content)
         {
             SMS sms = new SMS();
