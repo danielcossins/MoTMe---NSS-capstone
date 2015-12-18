@@ -5,6 +5,9 @@ Application is deployed on Azure here: http://motmensscapstone.azurewebsites.net
 
 ###Current Working Features
 * User can go to the main page, click on another user, and send that user a direct message. The message goes to the database. The recieving user see's the message appear on his screen, with username, date, and message body. Both users can communicate back and forth.
+* User can can add contacts from a list of all users. User can only message people who are contacts.
+* User can send a text message to a contact instead of a MoTMe message.
+* User must go through 2 factor authentication via phone number in order to register an account.
 
 ###User Story
 * User prompted to log in
