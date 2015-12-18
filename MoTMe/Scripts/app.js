@@ -238,26 +238,8 @@ app.controller('ContactCtrl', ["$scope", "$http", "$rootScope", function ($scope
     };
 }]);
 
-app.controller('AboutCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-    //THIS IS STILL A TESTING GROUND
-    $scope.test = "click me";
-    console.log($scope.test);
-
-    $scope.hello = function () {
-        console.log($scope.user);
-
-        $http.get("/Manage/GetUserIdLink")
-            .success(function (data) {
-                $scope.UserIdLink = data;
-            })
-            .error(function (error) { console.log(error.error) });
-
-        $http.get("/Manage/GetUserId")
-            .success(function (data) {
-                $scope.UserId = data;
-            })
-            .error(function (error) { console.log(error.error) });
-    };
+app.controller('AlertCtrl', ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+    //To be filled in
 }]);
 
 app.directive('myEnter', function () {
