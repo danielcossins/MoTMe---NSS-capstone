@@ -11,8 +11,8 @@
     </div>
     <div class="col-sm-9" id="middleChat">
         <div id="insideMiddle" ng-if="clickedContact != undefined">
-            @*<button type="button" class="btn btn-default" ng-model="sms">Send Text Message</button>*@
             <input type="checkbox" ng-model="sms" />Send text message
+            @*<button type="button" class="btn btn-default" ng-click="ChangeSMS()">Send text message</button>*@
             <div ng-hide="sms">
                 <div id="chat">
                     <input type="text" class="" style="width: 100% !important;" ng-model="$parent.body" my-enter="AddMessage(body)" />

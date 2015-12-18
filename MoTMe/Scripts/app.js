@@ -153,6 +153,14 @@ app.controller('IndexCtrl', ["$scope", "$http", "$rootScope", function ($scope, 
         $scope.RefreshMessages();
     };
 
+    $scope.ChangeSMS = function () {
+        if ($scope.sms) {
+            $scope.sms = false;
+        } else {
+            $scope.sms = true;
+        }
+    }
+
     $scope.SendSMS = function (message) {
         $scope.postSendMessage = "Sending . . .";
         message = "A MoTMe message from " + $scope.user.Name + ":    " + message;
