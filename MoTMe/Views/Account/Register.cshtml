@@ -45,7 +45,7 @@
     <div class="form-group" ng-if="isValidated == false">
         <div class="col-md-offset-2 col-md-10">
         <button type="button" class="btn btn-default" ng-click="SendCode()">Get Phone code</button>
-        <input type="text" class="form-control" ng-model="userCode" />
+        <input type="text" class="form-control" ng-model="$parent.userCode" />
             <button type="button" class="btn btn-default" ng-click="CheckIfMatchesCode()">Submit Code</button>
         </div>
         <h3>{{message}}</h3>
